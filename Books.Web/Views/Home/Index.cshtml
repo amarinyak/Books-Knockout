@@ -1,0 +1,16 @@
+﻿@model Books.Web.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Список книг</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Partial("~/Views/Books/_BooksTable.cshtml", Model.Sort)
+        </div>
+    </div>
+</div>

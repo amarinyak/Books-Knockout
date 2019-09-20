@@ -1,0 +1,16 @@
+﻿.pointer {
+    cursor: pointer;
+}
+
+.form-inline .form-group {
+    vertical-align: top;
+}
+
+.validationMessage {
+    display: block;
+    color: #a94442;
+}
+
+.authors-form > .form-group {
+    max-width: 170px;
+}
