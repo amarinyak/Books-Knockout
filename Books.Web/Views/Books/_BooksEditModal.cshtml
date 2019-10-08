@@ -9,8 +9,8 @@
                 @Html.Partial("~/Views/Books/_BooksEditForm.cshtml")
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-success" data-bind="click: save">Сохранить</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="text: resources.appUI.cancel"></button>
+                <button type="button" class="btn btn-success" data-bind="text: resources.appUI.save, click: save"></button>
             </div>
         </div>
     </div>

@@ -2,19 +2,21 @@
     var self = this;
 
     self.myBook = book;
-    self.isCreateMode = self.myBook == null;
-    self.title = self.isCreateMode ? "Добавить книгу" : "Редактировать книгу";
+    self.isEditMode = self.myBook != null;
+    self.title = self.isEditMode
+	    ? resources.appUI.editBook
+	    : resources.appUI.addBook;
 
-    if (self.isCreateMode) {
-        self.book = new BookViewModel({});
-        self.book.authors.push(new AuthorViewModel({}));
+    if (self.isEditMode) {
+	    self.book = new BookViewModel(ko.toJS(self.myBook));
     } else {
-        self.book = new BookViewModel(ko.toJS(self.myBook));
+	    self.book = new BookViewModel({});
+	    self.book.authors.push(new AuthorViewModel({}));
     }
 
     self.save = function (bookEdit) {
-        if (!bookEdit.book.isValid()) return;
-
-        BooksDataService.saveOrUpdate(bookEdit.book, successCallback);
+        if (bookEdit.book.isValid()) {
+	        BooksDataService.saveOrUpdate(bookEdit.book, successCallback);
+        }
     }
 }

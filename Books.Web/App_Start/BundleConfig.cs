@@ -19,6 +19,7 @@ namespace Books.Web
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/App/*.js",
                 "~/Scripts/App/Pages/*.js",
+                "~/Scripts/App/Resources/*.js",
                 "~/Scripts/App/Services/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

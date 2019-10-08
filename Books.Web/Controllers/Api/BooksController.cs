@@ -24,7 +24,7 @@ namespace Books.Web.Controllers.Api
         }
 
         [HttpGet]
-        public object GetList(string sortField, bool descSort)
+        public object GetList()
         {
             var books = _bookDataService.Get().Select(Mapper.Map<Book, BookViewModel>).ToList();
 
@@ -82,7 +82,9 @@ namespace Books.Web.Controllers.Api
                 {
                     Content = new ByteArrayContent(ms.ToArray())
                 };
+
                 result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+
                 return result;
             }
         }

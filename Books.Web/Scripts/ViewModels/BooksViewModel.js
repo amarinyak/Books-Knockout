@@ -13,31 +13,30 @@
     self.descSort = ko.observable(descSort);
 
     self.getBooks = function () {
-        BooksDataService.getList(self.sortField(), self.descSort(), function (data) {
-            self.updateBooks(data.books, true);
+        BooksDataService.getList(function (data) {
+            self.updateBooks(data.books);
             self.visible(true);
         });
     }
 
-    self.updateBooks = function (books, removeMissing) {
-        if (removeMissing) {
-            ko.utils.arrayForEach(self.books(), function (myBook) {
-                if (!books.some(function (book) {
-                    return book.id === myBook.id();
-                })) self.books.remove(myBook);
-            });
-        }
+    self.updateBooks = function (books) {
         ko.utils.arrayForEach(books, function (book) {
             var isExists = false;
+
             for (var i = 0; i < self.books().length; i++) {
                 var myBook = self.books()[i];
+
                 if (book.id === myBook.id()) {
                     myBook.update(book);
                     isExists = true;
                 }
             }
-            if (!isExists) self.books.push(new BookViewModel(book));
+
+            if (!isExists) {
+	            self.books.push(new BookViewModel(book));
+            }
         });
+
         sortBooks(self.sortField(), self.descSort());
     }
 
@@ -46,13 +45,13 @@
     }
 
     self.initHeaders = function () {
-        self.headers.push(new TableHeaderViewModel("Обложка"));
-        self.headers.push(new TableHeaderViewModel("Заголовок", true, "title"));
-        self.headers.push(new TableHeaderViewModel("Автор"));
-        self.headers.push(new TableHeaderViewModel("Количество страниц"));
-        self.headers.push(new TableHeaderViewModel("Год", true, "year"));
-        self.headers.push(new TableHeaderViewModel("Издательство"));
-        self.headers.push(new TableHeaderViewModel("ISBN"));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.cover));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.title, true, "title"));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.author));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.pageCount));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.year, true, "year"));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.publisher));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.isbn));
         self.headers.push(new TableHeaderViewModel(""));
     }
 
@@ -96,7 +95,7 @@
     }
 
     function getByIdCallback(data) {
-        self.updateBooks([data.book], false);
+        self.updateBooks([data.book]);
     }
 
     function closeEditModal() {

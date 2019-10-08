@@ -95,7 +95,7 @@
         if (file && /^image\/jpeg$/.test(file.type)) {
             reader.readAsDataURL(file);
         } else {
-            alert("Выберите изображение в формате jpeg.");
+			alert(resources.validation.imageFormatError);
         }
     }
 

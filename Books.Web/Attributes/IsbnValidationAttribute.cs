@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Books.Web.Logic.Validation;
+using Books.Web.Validation;
 
 namespace Books.Web.Attributes
 {
@@ -9,13 +9,9 @@ namespace Books.Web.Attributes
         {
             var strValue = value as string;
 
-            string errorMessage;
-            if (!IsbnValidator.IsValid(strValue, out errorMessage))
-            {
-                return new ValidationResult(errorMessage);
-            }
-
-            return ValidationResult.Success;
+            return IsbnValidator.IsValid(strValue, out var errorMessage)
+	            ? ValidationResult.Success
+	            : new ValidationResult(errorMessage);
         }
     }
 }

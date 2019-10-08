@@ -8,4 +8,5 @@
 
 $(function () {
     Home.init();
+    ValidationService.initRules();
 });

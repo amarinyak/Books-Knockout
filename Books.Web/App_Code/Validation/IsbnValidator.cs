@@ -2,23 +2,23 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Books.Web.Logic.Validation
+namespace Books.Web.Validation
 {
-    public class IsbnValidator
+    public static class IsbnValidator
     {
         public static bool IsValid(string value, out string errorMessage)
         {
-            if (string.IsNullOrEmpty(value) || value.Length == 17 && ChecRegex(value) && CheckDigit(value))
+            if (string.IsNullOrEmpty(value) || value.Length == 17 && CheckRegex(value) && CheckDigit(value))
             {
                 errorMessage = string.Empty;
                 return true;
             }
 
-            errorMessage = "Неправильный номер ISBN";
+            errorMessage = "Incorrect ISBN number";
             return false;
         }
 
-        private static bool ChecRegex(string value)
+        private static bool CheckRegex(string value)
         {
             var regex = new Regex(@"^[0-9]{3}-[0-9]{1}-[0-9]{2,7}-[0-9]{1,6}-[0-9]{1}$");
             return regex.IsMatch(value);

@@ -1,13 +1,9 @@
 ﻿var BooksDataService = (function () {
     return {
-        getList: function (sortField, descSort, successCallback) {
+        getList: function (successCallback) {
             $.ajax({
                 method: "GET",
                 url: "/Api/Books/GetList",
-                data: {
-                    sortField: sortField,
-                    descSort: descSort
-                },
                 content: "json",
                 success: successCallback
             });
@@ -16,7 +12,9 @@
             $.ajax({
                 method: "GET",
                 url: "/Api/Books/GetById",
-                data: { id: id },
+                data: {
+	                id: id
+                },
                 content: "json",
                 success: successCallback
             });
@@ -35,7 +33,9 @@
                 method: "POST",
                 url: "/Api/Books/Delete",
                 contentType: "application/json",
-                data: JSON.stringify({ id: book.id() }),
+                data: JSON.stringify({
+	                id: book.id()
+                }),
                 success: successCallback
             });
         }

@@ -1,49 +1,51 @@
 ﻿<div data-bind="with: book">
     <div class="form-group">
-        <label>Обложка</label>
+        <label data-bind="text: resources.appUI.cover"></label>
         <p data-bind="if: hasImage">
-            <img width="100" data-bind="attr:{src: imageUrl}" />
+            <img width="100" data-bind="attr:{src: imageUrl}" alt="" />
             <button class="btn btn-danger" data-bind="click: deleteImage" style="vertical-align: bottom;"><span class="glyphicon glyphicon-remove"></span></button>
         </p>
         <input type="file" data-bind="event: {change: uploadImage}" />
     </div>
     <div class="form-group">
-        <label>Заголовок</label>
+        <label data-bind="text: resources.appUI.title"></label>
         <input type="text" class="form-control" data-bind="value: title">
     </div>
     <div>
-        <label>Автор</label>
-        <div data-bind="foreach: {data:authors}">
-            <div class="form-group">
-                <div class="form-inline authors-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Фамилия" data-bind="value: lastName">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Имя" data-bind="value: firstName">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-danger" data-bind="click: $parent.deleteAuthor, visible: $parent.authors().length > 1"><span class="glyphicon glyphicon-minus"></span></button>
-                        <button class="btn btn-success" data-bind="click: $parent.addAuthor, visible: $index() + 1 == $parent.authors().length"><span class="glyphicon glyphicon-plus"></span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <label data-bind="text: resources.appUI.author"></label>
+	    <div data-bind="foreach: {data:authors}">
+		    <div class="form-group">
+			    <div class="form-inline authors-form">
+				    <div class="form-group">
+					    <input type="text" class="form-control" placeholder="First name" data-bind="value: firstName">
+				    </div>
+				    <div class="form-group">
+					    <input type="text" class="form-control" placeholder="Last name" data-bind="value: lastName">
+				    </div>
+				    <div class="form-group">
+					    <button class="btn btn-danger" data-bind="click: $parent.deleteAuthor, visible: $parent.authors().length > 1"><span class="glyphicon glyphicon-remove"></span></button>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="form-group">
+			<button class="btn btn-success" data-bind="text: resources.appUI.addAuthor, click: addAuthor"></button>
+	    </div>
     </div>
     <div class="form-group">
-        <label>Количество страниц</label>
+        <label data-bind="text: resources.appUI.pageCount"></label>
         <input type="text" class="form-control" data-bind="value: pageCount">
     </div>
     <div class="form-group">
-        <label>Год</label>
+        <label data-bind="text: resources.appUI.year"></label>
         <input type="text" class="form-control" data-bind="value: year">
     </div>
     <div class="form-group">
-        <label>Издательство</label>
+        <label data-bind="text: resources.appUI.publisher"></label>
         <input type="text" class="form-control" data-bind="value: publisher">
     </div>
     <div class="form-group">
-        <label>ISBN</label>
+        <label data-bind="text: resources.appUI.isbn"></label>
         <input type="text" class="form-control" data-bind="value: isbn">
     </div>
 </div>

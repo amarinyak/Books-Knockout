@@ -21,31 +21,29 @@
             </td>
             <td data-bind="text: title"></td>
             <td data-bind="foreach: {data:authors}">
-                <div>
-                    <span data-bind="text: lastName"></span>
-                    <span data-bind="text: firstName"></span>
-                </div>
+	            <div>
+		            <span data-bind="text: firstName"></span>
+		            <span data-bind="text: lastName"></span>
+	            </div>
             </td>
             <td data-bind="text: pageCount"></td>
             <td data-bind="text: year"></td>
             <td data-bind="text: publisher"></td>
             <td data-bind="text: isbn"></td>
             <td class="text-nowrap">
-                <button class="btn btn-default" data-bind="click: $parent.edit">Редактировать</button>
-                <button class="btn btn-danger" data-bind="click: $parent.delete">Удалить</button>
+                <button class="btn btn-default" data-bind="text: resources.appUI.edit, click: $parent.edit"></button>
+                <button class="btn btn-danger" data-bind="text: resources.appUI.delete, click: $parent.delete"></button>
             </td>
         </tr>
         </tbody>
     </table>
     <table class="table table-bordered" data-bind="visible: books().length == 0" style="display: none;">
         <tr>
-            <td>
-                Книги отсутствуют
-            </td>
+            <td data-bind="text: resources.appUI.noBooks"></td>
         </tr>
     </table>
     <div class="text-right">
-        <button class="btn btn-success" data-bind="click: create">Добавить книгу</button>
+        <button class="btn btn-success" data-bind="text: resources.appUI.addBook, click: create"></button>
     </div>
     @Html.Partial("~/Views/Books/_BooksEditModal.cshtml")
 </div>
