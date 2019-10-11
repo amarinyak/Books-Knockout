@@ -5,7 +5,7 @@ using Microsoft.Practices.Unity;
 
 namespace Books.Configuration
 {
-    public class UnityConfig
+    public static class UnityConfig
     {
         private static readonly Lazy<IUnityContainer> Container = new Lazy<IUnityContainer>(() =>
         {
@@ -19,7 +19,7 @@ namespace Books.Configuration
             return Container.Value;
         }
 
-        public static void RegisterTypes(IUnityContainer container)
+        private static void RegisterTypes(IUnityContainer container)
         {
             // Services
             container.RegisterType<IBookDataService, BookDataService>(new ContainerControlledLifetimeManager(),

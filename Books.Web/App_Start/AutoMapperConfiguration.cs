@@ -4,7 +4,7 @@ using Books.Web.ViewModels;
 
 namespace Books.Web
 {
-    public class AutoMapperConfiguration
+    public static class AutoMapperConfiguration
     {
         public static void Configure()
         {

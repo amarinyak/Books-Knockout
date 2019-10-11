@@ -31,7 +31,7 @@ namespace Books.Services
         {
             var book = _books.SingleOrDefault(p => p.Id == id);
 
-            return book == null ? null : book.Image;
+            return book?.Image;
         }
 
         public void Delete(Guid id)
