@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8AE66D5-DD86-4132-9E16-D0A488C0BB65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Books.BL</RootNamespace>
+    <AssemblyName>Books.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mappers\AuthorMapper.cs" />
+    <Compile Include="Mappers\BookMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\BookProvider.cs" />
+    <Compile Include="Validation\IsbnValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Books.BL.Interfaces\Books.BL.Interfaces.csproj">
+      <Project>{5D50C6FF-9110-422D-999B-9FCDA17262F8}</Project>
+      <Name>Books.BL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books.BL.Models\Books.BL.Models.csproj">
+      <Project>{C494C862-D109-4AD3-8675-74D1D5CE9574}</Project>
+      <Name>Books.BL.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books.DAL.Interfaces\Books.DAL.Interfaces.csproj">
+      <Project>{87efdeac-3a75-415f-bbac-ed1a828b534a}</Project>
+      <Name>Books.DAL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books.DAL.Models\Books.DAL.Models.csproj">
+      <Project>{c92afb62-a461-49ff-be92-64a8e6891154}</Project>
+      <Name>Books.DAL.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

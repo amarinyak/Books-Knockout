@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Book]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL CONSTRAINT [PK_Book] PRIMARY KEY,
+    [Title] NVARCHAR(200) NOT NULL,
+    [PageCount] SMALLINT NOT NULL,
+    [Publisher] NVARCHAR(200) NULL,
+    [Year] SMALLINT NOT NULL,
+    [Isbn] BIGINT NULL,
+    [Image] NVARCHAR(MAX) NULL,
+    [CreateDate] DATETIME2 NOT NULL,
+    [EditDate] DATETIME2 NOT NULL
+)

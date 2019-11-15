@@ -2,7 +2,7 @@
     <div class="form-group">
         <label data-bind="text: resources.appUI.cover"></label>
         <p data-bind="if: hasImage">
-            <img width="100" data-bind="attr:{src: imageUrl}" alt="" />
+            <img width="100" data-bind="attr:{src: image}" alt="" />
             <button class="btn btn-danger" data-bind="click: deleteImage" style="vertical-align: bottom;"><span class="glyphicon glyphicon-remove"></span></button>
         </p>
         <input type="file" data-bind="event: {change: uploadImage}" />

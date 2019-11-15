@@ -19,14 +19,23 @@
                 success: successCallback
             });
         },
-        saveOrUpdate: function (book, successCallback) {
+        create: function (book, successCallback) {
             $.ajax({
                 method: "POST",
-                url: "/Api/Books/CreateOrUpdate",
+                url: "/Api/Books/Create",
                 contentType: "application/json",
                 data: JSON.stringify(ko.toJS(book)),
                 success: successCallback
             });
+        },
+        update: function (book, successCallback) {
+	        $.ajax({
+		        method: "POST",
+		        url: "/Api/Books/Update",
+		        contentType: "application/json",
+		        data: JSON.stringify(ko.toJS(book)),
+		        success: successCallback
+	        });
         },
         delete: function (book, successCallback) {
             $.ajax({
@@ -34,7 +43,7 @@
                 url: "/Api/Books/Delete",
                 contentType: "application/json",
                 data: JSON.stringify({
-	                id: book.id()
+					id: book.id()
                 }),
                 success: successCallback
             });

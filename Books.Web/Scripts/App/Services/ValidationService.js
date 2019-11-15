@@ -13,8 +13,8 @@
 
     function checkIsbn(value) {
 	    if (value == null || value === "") return true;
-	    if (value.length !== 17) return false;
-	    if (!/^[0-9]{3}-[0-9]{1}-[0-9]{2,7}-[0-9]{1,6}-[0-9]{1}$/.test(value)) return false;
+	    if (value.length !== 14) return false;
+	    if (!/^[0-9]{3}-[0-9]{10}$/.test(value)) return false;
 
 	    var digits = getDigitArray(value);
 

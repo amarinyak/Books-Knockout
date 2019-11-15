@@ -2,7 +2,7 @@
 
 resources.validation = (function() {
 	return {
-		imageFormatError: "The service supports only JPEG pictures",
-		isbnError: "Incorrect ISBN number"
+		imageFormatError: "Unsupported image format, only jpeg images are supported",
+		isbnError: "Incorrect ISBN number, example: 978-0804139021"
 	}
 })();

@@ -6,16 +6,16 @@
     self.editModel = ko.observable();
     
     self.books = ko.observableArray();
-    self.visible = ko.observable(false);
+    self.isLoading = ko.observable(true);
 
     self.headers = ko.observableArray();
     self.sortField = ko.observable(sortField);
     self.descSort = ko.observable(descSort);
 
     self.getBooks = function () {
-        BooksDataService.getList(function (data) {
-            self.updateBooks(data.books);
-            self.visible(true);
+        BooksDataService.getList(function (books) {
+            self.updateBooks(books);
+            self.isLoading(false);
         });
     }
 
@@ -46,11 +46,11 @@
 
     self.initHeaders = function () {
         self.headers.push(new TableHeaderViewModel(resources.appUI.cover));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.title, true, "title"));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.title, "title"));
         self.headers.push(new TableHeaderViewModel(resources.appUI.author));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.pageCount));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.year, true, "year"));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.publisher));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.pageCount, "pageCount"));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.year, "year"));
+        self.headers.push(new TableHeaderViewModel(resources.appUI.publisher, "publisher"));
         self.headers.push(new TableHeaderViewModel(resources.appUI.isbn));
         self.headers.push(new TableHeaderViewModel(""));
     }
@@ -89,13 +89,13 @@
         self.editModal.modal("show");
     }
 
-    function createOrUpdateCallBack(data) {
-        BooksDataService.getById(data.bookId, getByIdCallback);
+    function createOrUpdateCallBack(bookId) {
+        BooksDataService.getById(bookId, getByIdCallback);
         closeEditModal();
     }
 
-    function getByIdCallback(data) {
-        self.updateBooks([data.book]);
+    function getByIdCallback(book) {
+        self.updateBooks([book]);
     }
 
     function closeEditModal() {

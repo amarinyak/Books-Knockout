@@ -1,92 +1,71 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web.Http;
-using AutoMapper;
-using Books.Interfaces.Services;
-using Books.Models;
-using Books.Web.Attributes;
+using Books.BL.Interfaces.Providers;
+using Books.Web.Code.Attributes;
+using Books.Web.Interfaces.Mappers;
 using Books.Web.ViewModels;
 
-namespace Books.Web.Controllers.Api
+namespace Books.Web.Controllers.API
 {
-    [HandleApiError]
+    [HandleErrors]
     public class BooksController : ApiController
     {
-        private readonly IBookDataService _bookDataService;
+	    private readonly IBookProvider _bookProvider;
+	    private readonly IBookViewModelMapper _bookViewModelMapper;
 
-        public BooksController(IBookDataService bookDataService)
+	    public BooksController(IBookProvider bookProvider, IBookViewModelMapper bookMapper)
+	    {
+		    _bookProvider = bookProvider;
+		    _bookViewModelMapper = bookMapper;
+	    }
+
+        [HttpGet]
+        public async Task<IEnumerable<BookViewModel>> GetList()
         {
-            _bookDataService = bookDataService;
+	        var books = await _bookProvider.GetList();
+
+			var model = _bookViewModelMapper.ToViewModel(books).ToList();
+
+			return model;
         }
 
         [HttpGet]
-        public object GetList()
+        public async Task<BookViewModel> GetById(Guid id)
         {
-            var books = _bookDataService.Get().Select(Mapper.Map<Book, BookViewModel>).ToList();
+	        var book = await _bookProvider.GetById(id);
 
-            return new
-            {
-                Books = books
-            };
-        }
+	        var model = _bookViewModelMapper.ToViewModel(book);
 
-        [HttpGet]
-        public object GetById(Guid id)
-        {
-            var book = Mapper.Map<Book, BookViewModel>(_bookDataService.Get(id));
-
-            return new
-            {
-                Book = book
-            };
+            return model;
         }
 
         [HttpPost]
-        [CheckApiModelState]
-        public object CreateOrUpdate(BookViewModel book)
+        [CheckModelState]
+        public async Task<Guid> Create(BookViewModel book)
         {
-            var bookModel = Mapper.Map<BookViewModel, Book>(book);
+            var bookDm = _bookViewModelMapper.ToDomainModel(book);
 
-            var bookId = book.Id == Guid.Empty
-                ? _bookDataService.Create(bookModel)
-                : _bookDataService.Update(bookModel, book.UpdateImage);
+            var bookId = await _bookProvider.Create(bookDm);
 
-            return new
-            {
-                BookId = bookId
-            };
+            return bookId;
         }
 
         [HttpPost]
-        public void Delete(BookViewModel book)
+        [CheckModelState]
+        public async Task Update(BookViewModel book)
         {
-            _bookDataService.Delete(book.Id);
+	        var bookDm = _bookViewModelMapper.ToDomainModel(book);
+
+	        await _bookProvider.Update(bookDm);
         }
 
-        [HttpGet]
-        public HttpResponseMessage GetImage(Guid id)
+        [HttpPost]
+        public async Task Delete(DeleteRequest request)
         {
-            var image = _bookDataService.GetImage(id);
-
-            if (image == null) return new HttpResponseMessage(HttpStatusCode.BadRequest);
-
-            var imageBytes = Convert.FromBase64String(image.Substring(23));
-
-            using (var ms = new MemoryStream(imageBytes))
-            {
-                var result = new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new ByteArrayContent(ms.ToArray())
-                };
-
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
-
-                return result;
-            }
+	        await _bookProvider.Delete(request.Id);
         }
     }
 }

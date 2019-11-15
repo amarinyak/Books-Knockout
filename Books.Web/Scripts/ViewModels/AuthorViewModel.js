@@ -1,6 +1,8 @@
 ﻿var AuthorViewModel = function(author) {
     var self = this;
 
+    self.id = ko.observable(author.id);
+
     self.firstName = ko.observable(author.firstName);
     self.firstName.extend({
         required: true,
@@ -12,6 +14,8 @@
         required: true,
         maxLength: 20
     });
+
+    self.bookId = ko.observable(author.bookId);
 
     self.update = function (updAuthor) {
         if (updAuthor == null) return;

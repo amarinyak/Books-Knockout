@@ -34,18 +34,17 @@
     });
 
     self.createDate = ko.observable(book.createDate);
+
     self.editDate = ko.observable(book.editDate);
 
-    self.image = ko.observable(book.image);
-    self.hasImage = ko.observable(book.hasImage);
-    self.updateImage = ko.observable(false);
-    self.imageUrl = ko.computed(function () {
-        return self.updateImage()
-            ? self.image()
-            : "/Api/Books/GetImage?id=" + self.id() + "&ts=" + new Date(self.editDate()).getTime();
-    });
+	self.image = ko.observable(book.image);
 
-    self.authors = ko.observableArray();
+	self.hasImage = ko.pureComputed(function() {
+		return self.image() != null;
+	});
+
+	self.authors = ko.observableArray();
+
     updateAuthors(book.authors);
 
     self.update = function (updBook) {
@@ -58,7 +57,6 @@
         self.year(updBook.year);
         self.isbn(updBook.isbn);
         self.image(updBook.image);
-        self.hasImage(updBook.hasImage);
         self.createDate(updBook.createDate);
         self.editDate(updBook.editDate);
 
@@ -75,7 +73,9 @@
     }
 
     self.addAuthor = function () {
-        self.authors.push(new AuthorViewModel({}));
+        self.authors.push(new AuthorViewModel({
+	        bookId: self.id()
+        }));
     }
 
     self.deleteAuthor = function (author) {
@@ -88,8 +88,6 @@
 
         reader.addEventListener("load", function () {
             self.image(reader.result);
-            self.hasImage(true);
-            self.updateImage(true);
         });
 
         if (file && /^image\/jpeg$/.test(file.type)) {
@@ -101,8 +99,6 @@
 
     self.deleteImage = function () {
         self.image(null);
-        self.hasImage(false);
-        self.updateImage(true);
     }
 
     self.isValid = function () {

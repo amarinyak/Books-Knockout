@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Books.Web.Attributes;
+using Books.Web.Code.Attributes;
 
 namespace Books.Web.ViewModels
 {
@@ -13,25 +13,27 @@ namespace Books.Web.ViewModels
         [MaxLength(30)]
         public string Title { get; set; }
 
-        public IEnumerable<AuthorViewModel> Authors { get; set; }
-
+        [Required]
         [Range(1, 10000)]
         public int PageCount { get; set; }
 
         [MaxLength(30)]
         public string Publisher { get; set; }
 
+        [Required]
         [Range(1800, 9999)]
         public int Year { get; set; }
 
-        [IsbnValidation]
+        [IsbnValidation(ErrorMessage = "Incorrect ISBN number, example: 978-0804139021")]
         public string Isbn { get; set; }
 
-        [RegularExpression(@"^data:image\/jpeg;base64.*", ErrorMessage = "Выберите изображение в формате jpeg.")]
+        [RegularExpression(@"^data:image\/jpeg;base64.*", ErrorMessage = "Unsupported image format, only jpeg images are supported")]
         public string Image { get; set; }
-        public bool HasImage { get; set; }
-        public bool UpdateImage { get; set; }
+
         public DateTime CreateDate { get; set; }
+
         public DateTime EditDate { get; set; }
+
+        public IEnumerable<AuthorViewModel> Authors { get; set; }
     }
 }

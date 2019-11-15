@@ -3,3 +3,7 @@ bin
 obj
 packages
 *.user
+*.ldf
+*.mdf
+*.jfm
+*.dbmdl

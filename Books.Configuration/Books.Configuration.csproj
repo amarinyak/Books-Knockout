@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,48 +33,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookDataConfig.cs" />
+    <Compile Include="ConfigFile.cs" />
+    <Compile Include="DI\MappersRegistrar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnityConfig.cs" />
+    <Compile Include="DI\BusinessLogicRegistrar.cs" />
+    <Compile Include="DI\DataAccessRegistrar.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Books.Interfaces\Books.Interfaces.csproj">
-      <Project>{f6d1060b-14ed-425b-adbb-2f47a887f710}</Project>
-      <Name>Books.Interfaces</Name>
+    <ProjectReference Include="..\Books.BL.Interfaces\Books.BL.Interfaces.csproj">
+      <Project>{5d50c6ff-9110-422d-999b-9fcda17262f8}</Project>
+      <Name>Books.BL.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Books.Models\Books.Models.csproj">
-      <Project>{46234e2f-1773-4ee8-8708-e12311e6e968}</Project>
-      <Name>Books.Models</Name>
+    <ProjectReference Include="..\Books.BL\Books.BL.csproj">
+      <Project>{e8ae66d5-dd86-4132-9e16-d0a488c0bb65}</Project>
+      <Name>Books.BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Books.Services\Books.Services.csproj">
-      <Project>{465a9a90-2a99-4a64-9765-ae48c71d3a0c}</Project>
-      <Name>Books.Services</Name>
+    <ProjectReference Include="..\Books.DAL.Interfaces\Books.DAL.Interfaces.csproj">
+      <Project>{87efdeac-3a75-415f-bbac-ed1a828b534a}</Project>
+      <Name>Books.DAL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books.DAL\Books.DAL.csproj">
+      <Project>{05d1dbdb-c1b0-44aa-9c8c-51bbea39d83e}</Project>
+      <Name>Books.DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
