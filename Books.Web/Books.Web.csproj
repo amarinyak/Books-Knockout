@@ -161,6 +161,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\App\Configs\ErrorsConfig.js" />
+    <Content Include="Scripts\App\ViewModels\AuthorViewModel.js" />
+    <Content Include="Scripts\App\ViewModels\BookEditViewModel.js" />
+    <Content Include="Scripts\App\ViewModels\BooksViewModel.js" />
+    <Content Include="Scripts\App\ViewModels\BookViewModel.js" />
+    <Content Include="Scripts\App\ViewModels\TableHeaderViewModel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -172,16 +178,10 @@
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\knockout.validation.min.js" />
-    <Content Include="Scripts\App\Pages\Home.js" />
-    <Content Include="Scripts\App\Services\BooksDataService.js" />
-    <Content Include="Scripts\App\Services\BooksTableService.js" />
-    <Content Include="Scripts\App\Services\ValidationService.js" />
+    <Content Include="Scripts\App\Services\BooksDataProvider.js" />
+    <Content Include="Scripts\App\Services\BooksViewModelInitializer.js" />
+    <Content Include="Scripts\App\Configs\ValidationConfig.js" />
     <Content Include="Scripts\App\AppStart.js" />
-    <Content Include="Scripts\ViewModels\AuthorViewModel.js" />
-    <Content Include="Scripts\ViewModels\BookEditViewModel.js" />
-    <Content Include="Scripts\ViewModels\BooksViewModel.js" />
-    <Content Include="Scripts\ViewModels\BookViewModel.js" />
-    <Content Include="Scripts\ViewModels\TableHeaderViewModel.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -229,6 +229,7 @@
     <EmbeddedResource Include="App_LocalResources\AppUI.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppUI.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

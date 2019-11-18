@@ -1,5 +1,7 @@
-﻿var AuthorViewModel = function(author) {
-    var self = this;
+﻿"use strict";
+
+var AuthorViewModel = function(author) {
+	var self = this;
 
     self.id = ko.observable(author.id);
 

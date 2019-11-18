@@ -1,4 +1,6 @@
-﻿var resources = resources || {};
+﻿"use strict";
+
+var resources = resources || {};
 
 resources.appUI = (function() {
 	return {

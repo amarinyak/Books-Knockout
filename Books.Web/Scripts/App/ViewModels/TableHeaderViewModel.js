@@ -1,4 +1,6 @@
-﻿var TableHeaderViewModel = function(title, sortField) {
+﻿"use strict";
+
+var TableHeaderViewModel = function(title, sortField) {
     var self = this;
 
     self.title = title;

@@ -1,4 +1,6 @@
-﻿var BookEditViewModel = function(book, createOrUpdateCallBack) {
+﻿"use strict";
+
+var BookEditViewModel = function(book, saveCallback) {
 	var self = this;
 	var isEditMode = book != null;
 	
@@ -20,12 +22,12 @@
 	    if (!bookEdit.book.isValid()) return;
 
 	    if (isEditMode) {
-		    BooksDataService.update(bookEdit.book, function() {
-			    createOrUpdateCallBack(book.id());
+		    BooksDataProvider.update(bookEdit.book).done(function() {
+			    saveCallback(book.id());
 		    });
 	    } else {
-		    BooksDataService.create(bookEdit.book, function(bookId) {
-			    createOrUpdateCallBack(bookId);
+		    BooksDataProvider.create(bookEdit.book).then(function(bookId) {
+			    saveCallback(bookId);
 		    });
 	    }
     }

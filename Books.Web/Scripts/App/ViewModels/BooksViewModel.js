@@ -1,20 +1,18 @@
-﻿var BooksViewModel = function (sortField, descSort) {
-    var self = this;
+﻿"use strict";
 
-    var booksTable = $(".js-books-table");
-    self.editModal = $(".js-books-edit-modal");
+var BooksViewModel = function (booksTable, editModal, sortField, descSort) {
+	var self = this;
+
     self.editModel = ko.observable();
-    
     self.books = ko.observableArray();
     self.isLoading = ko.observable(true);
-
-    self.headers = ko.observableArray();
+	self.headers = ko.observableArray();
     self.sortField = ko.observable(sortField);
     self.descSort = ko.observable(descSort);
 
     self.getBooks = function () {
-        BooksDataService.getList(function (books) {
-            self.updateBooks(books);
+	    BooksDataProvider.getList().done(function (books) {
+	        self.updateBooks(books);
             self.isLoading(false);
         });
     }
@@ -24,9 +22,9 @@
             var isExists = false;
 
             for (var i = 0; i < self.books().length; i++) {
-                var myBook = self.books()[i];
+	            var myBook = self.books()[i];
 
-                if (book.id === myBook.id()) {
+	            if (book.id === myBook.id()) {
                     myBook.update(book);
                     isExists = true;
                 }
@@ -56,7 +54,7 @@
     }
 
     self.sort = function (tableHeader) {
-        if (!tableHeader.canSort) return;
+        if (!tableHeader.canSort()) return;
 
         if (self.descSort() === true || self.sortField() !== tableHeader.sortField) self.descSort(false);
         else self.descSort(true);
@@ -71,8 +69,8 @@
     }
 
     self.delete = function (book) {
-        BooksDataService.delete(book, function () {
-            self.books.remove(book);
+	    BooksDataProvider.delete(book).done(function () {
+	        self.books.remove(book);
         });
     }
 
@@ -85,26 +83,23 @@
     }
 
     function openEditModal(book) {
-        self.editModel(new BookEditViewModel(book, createOrUpdateCallBack));
-        self.editModal.modal("show");
+        self.editModel(new BookEditViewModel(book, editModalSaveCallback));
+        editModal.modal("show");
     }
 
-    function createOrUpdateCallBack(bookId) {
-        BooksDataService.getById(bookId, getByIdCallback);
-        closeEditModal();
-    }
+	function editModalSaveCallback(bookId) {
+		BooksDataProvider.getById(bookId).done(function (book) {
+			self.updateBooks([book]);
+		});
 
-    function getByIdCallback(book) {
-        self.updateBooks([book]);
-    }
-
-    function closeEditModal() {
-        self.editModal.modal("hide");
-    }
+		editModal.modal("hide");
+	}
 
     function sortBooks(sortField, descSort) {
         self.books.sort(function (l, r) {
-            return l[sortField]() === r[sortField]()
+	        if (!l[sortField] || !r[sortField]) return 0;
+	        
+	        return l[sortField]() === r[sortField]()
                 ? 0
                 : l[sortField]() < r[sortField]()
                     ? descSort ? 1 : -1

@@ -1,14 +1,8 @@
-﻿var Site = (function () {
-    return {
-        initAjaxErrors: function() {
-            $(document).ajaxError(function (e, xhr) {
-                alert(xhr.responseJSON.error);
-            });
-        }
-    }
-})();
+﻿"use strict";
 
 $(function () {
-    Site.initAjaxErrors();
-	ValidationService.initRules();
+	ErrorsConfig.initAjaxErrors();
+	ValidationConfig.initRules();
+
+	BooksViewModelInitializer.init();
 });

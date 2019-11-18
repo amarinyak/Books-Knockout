@@ -1,8 +1,10 @@
-﻿var ValidationService = (function () {
-    function getDigitArray(value) {
-        var val = value.replace(/[^0-9]/g, "");
+﻿"use strict";
 
-        var digits = [];
+var ValidationConfig = (function () {
+    function getDigitArray(value) {
+	    var val = value.replace(/[^0-9]/g, "");
+
+	    var digits = [];
 
         for (var i = 0; i < val.length; i++) {
             digits.push(parseInt(val[i]));

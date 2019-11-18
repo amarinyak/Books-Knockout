@@ -1,4 +1,6 @@
-﻿var BookViewModel = function(book) {
+﻿"use strict";
+
+var BookViewModel = function(book) {
     var self = this;
 
     self.id = ko.observable(book.id);
