@@ -8,7 +8,7 @@ namespace Books.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
                 "~/Scripts/jquery-3.4.1.js",
-                "~/Scripts/knockout-3.4.2.debug.js",
+                "~/Scripts/knockout-3.5.1.debug.js",
                 "~/Scripts/knockout.validation.js",
                 "~/Scripts/knockout.validation.ru-RU.js",
                 "~/Scripts/bootstrap.js"));
