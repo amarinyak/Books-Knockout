@@ -15,7 +15,7 @@ namespace Books.BL.Models
 
         public int Year { get; set; }
 
-        public long Isbn { get; set; }
+        public string Isbn { get; set; }
 
         public string Image { get; set; }
 

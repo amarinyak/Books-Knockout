@@ -66,13 +66,12 @@ namespace Books.BL.Tests.Mappers
 		public void ToDataModel_WithoutIdAndWithoutAuthors()
 		{
 			// Arrange
-			var bookId = _fixture.Create<Guid>();
 			var book = _fixture.Build<Book>()
-				.With(p => p.Id, bookId)
+				.With(p => p.Id, Guid.Empty)
 				.Without(p => p.Authors)
 				.Create();
 
-			_authorMapper.Setup(p => p.ToDataModel(book.Authors, bookId))
+			_authorMapper.Setup(p => p.ToDataModel(book.Authors, It.Is<Guid>(g => g != Guid.Empty)))
 				.Returns((IEnumerable<AuthorDb>)null);
 
 			var expected = new BookDb
@@ -97,7 +96,7 @@ namespace Books.BL.Tests.Mappers
 			expected.Id = result.Id;
 			result.Should().BeEquivalentTo(expected);
 
-			_authorMapper.Verify(p => p.ToDataModel(book.Authors, book.Id), Times.Once);
+			_authorMapper.Verify(p => p.ToDataModel(book.Authors, It.Is<Guid>(g => g != Guid.Empty)), Times.Once);
 		}
 
 		[TestMethod]

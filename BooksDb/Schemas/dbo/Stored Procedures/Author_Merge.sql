@@ -3,7 +3,13 @@
 AS
 BEGIN
 
-	MERGE [dbo].[Author] t USING @AuthorCollection s
+	WITH FilteredAuthors AS (
+		SELECT *
+		FROM [dbo].[Author] a
+		WHERE a.[BookId] IN (SELECT DISTINCT BookId FROM @AuthorCollection)
+	)
+
+	MERGE FilteredAuthors t USING @AuthorCollection s
 	ON (s.[Id] = t.[Id])
 	WHEN MATCHED THEN
         UPDATE SET

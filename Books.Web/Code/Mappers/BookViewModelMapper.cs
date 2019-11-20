@@ -9,12 +9,10 @@ namespace Books.Web.Code.Mappers
 	public class BookViewModelMapper : IBookViewModelMapper
 	{
 		private readonly IAuthorViewModelMapper _authorMapper;
-		private readonly IIsbnMapper _isbnMapper;
 
-		public BookViewModelMapper(IAuthorViewModelMapper authorMapper, IIsbnMapper isbnMapper)
+		public BookViewModelMapper(IAuthorViewModelMapper authorMapper)
 		{
 			_authorMapper = authorMapper;
-			_isbnMapper = isbnMapper;
 		}
 
 		public Book ToDomainModel(BookViewModel book)
@@ -26,7 +24,7 @@ namespace Books.Web.Code.Mappers
 				PageCount = book.PageCount,
 				Publisher = book.Publisher,
 				Year = book.Year,
-				Isbn = _isbnMapper.ToNumber(book.Isbn),
+				Isbn = book.Isbn,
 				Image = book.Image,
 				CreateDate = book.CreateDate,
 				EditDate = book.EditDate,
@@ -50,7 +48,7 @@ namespace Books.Web.Code.Mappers
 				PageCount = book.PageCount,
 				Publisher = book.Publisher,
 				Year = book.Year,
-				Isbn = _isbnMapper.ToString(book.Isbn),
+				Isbn = book.Isbn,
 				Image = book.Image,
 				CreateDate = book.CreateDate,
 				EditDate = book.EditDate,

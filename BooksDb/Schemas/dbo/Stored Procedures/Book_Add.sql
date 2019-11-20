@@ -4,8 +4,8 @@
     @PageCount	SMALLINT,
     @Publisher	NVARCHAR(200),
     @Year		SMALLINT,
-    @Isbn		BIGINT,
-    @Image		NVARCHAR(MAX)
+    @Isbn		VARCHAR(14),
+    @Image		VARCHAR(MAX)
 AS
 BEGIN
 

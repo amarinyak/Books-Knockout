@@ -10,7 +10,6 @@ namespace Books.Web.DI
 		{
 			containerBuilder.RegisterType<AuthorViewModelMapper>().As<IAuthorViewModelMapper>().SingleInstance();
 			containerBuilder.RegisterType<BookViewModelMapper>().As<IBookViewModelMapper>().SingleInstance();
-			containerBuilder.RegisterType<IsbnMapper>().As<IIsbnMapper>().SingleInstance();
 		}
 	}
 }

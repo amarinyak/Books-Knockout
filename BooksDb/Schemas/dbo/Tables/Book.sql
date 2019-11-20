@@ -5,8 +5,8 @@
     [PageCount] SMALLINT NOT NULL,
     [Publisher] NVARCHAR(200) NULL,
     [Year] SMALLINT NOT NULL,
-    [Isbn] BIGINT NULL,
-    [Image] NVARCHAR(MAX) NULL,
+    [Isbn] VARCHAR(14) NULL,
+    [Image] VARCHAR(MAX) NULL,
     [CreateDate] DATETIME2 NOT NULL,
     [EditDate] DATETIME2 NOT NULL
 )
