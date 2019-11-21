@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Books.Web.ViewModels;
 
 namespace Books.Web.Code.Attributes
 {
@@ -12,13 +13,15 @@ namespace Books.Web.Code.Attributes
 		{
 			if (actionContext.ModelState.IsValid) return;
 
-			var errorList = actionContext.ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage);
-			var errorListStr = string.Join(" ", errorList);
+			var modelStateErrorsViewModel = actionContext.ModelState.Keys.Select(key => new ModelStateErrorViewModel
+			{
+				FieldName = key,
+				Errors = actionContext.ModelState[key].Errors.Select(p => p.ErrorMessage)
+			});
 
 			actionContext.Response = actionContext.Request.CreateResponse(
 				HttpStatusCode.BadRequest,
-				new { Error = errorListStr }
-			);
+				modelStateErrorsViewModel);
 		}
 	}
 }

@@ -104,7 +104,7 @@
   <ItemGroup>
     <Compile Include="Code\Mappers\AuthorViewModelMapperTests.cs" />
     <Compile Include="Code\Mappers\BookViewModelMapperTests.cs" />
-    <Compile Include="Controllers\API\BooksControllerTests.cs" />
+    <Compile Include="Controllers\API\v1\BooksControllerTests.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

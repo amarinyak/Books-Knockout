@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Books.BL.Interfaces.Providers;
 using Books.BL.Models;
-using Books.Web.Controllers.API;
+using Books.Web.Controllers.API.v1;
 using Books.Web.Interfaces.Mappers;
 using Books.Web.ViewModels;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Books.Web.Tests.Controllers.API
+namespace Books.Web.Tests.Controllers.API.v1
 {
 	[TestClass]
 	public class BooksControllerTests
@@ -119,15 +119,15 @@ namespace Books.Web.Tests.Controllers.API
 		public async Task Delete()
 		{
 			// Arrange
-			var request = _fixture.Create<DeleteRequest>();
+			var id = _fixture.Create<Guid>();
 
-			_bookProvider.Setup(p => p.Delete(request.Id)).Returns(Task.CompletedTask);
+			_bookProvider.Setup(p => p.Delete(id)).Returns(Task.CompletedTask);
 
 			// Act
-			 await _target.Delete(request);
+			 await _target.Delete(id);
 
 			// Assert
-			_bookProvider.Verify(p => p.Delete(request.Id), Times.Once);
+			_bookProvider.Verify(p => p.Delete(id), Times.Once);
 		}
 	}
 }

@@ -8,8 +8,9 @@ using Books.Web.Code.Attributes;
 using Books.Web.Interfaces.Mappers;
 using Books.Web.ViewModels;
 
-namespace Books.Web.Controllers.API
+namespace Books.Web.Controllers.API.v1
 {
+	[RoutePrefix("api/v1/books")]
     [HandleErrors]
     public class BooksController : ApiController
     {
@@ -23,6 +24,7 @@ namespace Books.Web.Controllers.API
 	    }
 
         [HttpGet]
+        [Route("")]
         public async Task<IEnumerable<BookViewModel>> GetList()
         {
 	        var books = await _bookProvider.GetList();
@@ -33,6 +35,7 @@ namespace Books.Web.Controllers.API
         }
 
         [HttpGet]
+        [Route("{id}")]
         public async Task<BookViewModel> GetById(Guid id)
         {
 	        var book = await _bookProvider.GetById(id);
@@ -43,6 +46,7 @@ namespace Books.Web.Controllers.API
         }
 
         [HttpPost]
+        [Route("")]
         [CheckModelState]
         public async Task<Guid> Create(BookViewModel book)
         {
@@ -53,7 +57,8 @@ namespace Books.Web.Controllers.API
             return bookId;
         }
 
-        [HttpPost]
+        [HttpPut]
+        [Route("")]
         [CheckModelState]
         public async Task Update(BookViewModel book)
         {
@@ -62,10 +67,11 @@ namespace Books.Web.Controllers.API
 	        await _bookProvider.Update(bookDm);
         }
 
-        [HttpPost]
-        public async Task Delete(DeleteRequest request)
+        [HttpDelete]
+		[Route("{id}")]
+        public async Task Delete(Guid id)
         {
-	        await _bookProvider.Delete(request.Id);
+	        await _bookProvider.Delete(id);
         }
     }
 }
