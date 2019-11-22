@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Books.BL.Models;
-using Books.Web.ViewModels;
+using Books.Web.ViewModels.API;
 
 namespace Books.Web.Interfaces.Mappers
 {

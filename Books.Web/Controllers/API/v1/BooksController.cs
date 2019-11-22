@@ -6,7 +6,7 @@ using System.Web.Http;
 using Books.BL.Interfaces.Providers;
 using Books.Web.Code.Attributes;
 using Books.Web.Interfaces.Mappers;
-using Books.Web.ViewModels;
+using Books.Web.ViewModels.API;
 
 namespace Books.Web.Controllers.API.v1
 {
@@ -23,6 +23,10 @@ namespace Books.Web.Controllers.API.v1
 		    _bookViewModelMapper = bookMapper;
 	    }
 
+		/// <summary>
+		/// Get list of books
+		/// </summary>
+		/// <returns></returns>
         [HttpGet]
         [Route("")]
         public async Task<IEnumerable<BookViewModel>> GetList()
@@ -34,6 +38,11 @@ namespace Books.Web.Controllers.API.v1
 			return model;
         }
 
+		/// <summary>
+		/// Get a book by ID
+		/// </summary>
+		/// <param name="id">Book ID</param>
+		/// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<BookViewModel> GetById(Guid id)
@@ -45,6 +54,11 @@ namespace Books.Web.Controllers.API.v1
             return model;
         }
 
+		/// <summary>
+		/// Create a book
+		/// </summary>
+		/// <param name="book"></param>
+		/// <returns></returns>
         [HttpPost]
         [Route("")]
         [CheckModelState]
@@ -57,6 +71,11 @@ namespace Books.Web.Controllers.API.v1
             return bookId;
         }
 
+		/// <summary>
+		/// Update a book
+		/// </summary>
+		/// <param name="book"></param>
+		/// <returns></returns>
         [HttpPut]
         [Route("")]
         [CheckModelState]
@@ -67,6 +86,11 @@ namespace Books.Web.Controllers.API.v1
 	        await _bookProvider.Update(bookDm);
         }
 
+		/// <summary>
+		/// Delete a book by ID
+		/// </summary>
+		/// <param name="id">Book ID</param>
+		/// <returns></returns>
         [HttpDelete]
 		[Route("{id}")]
         public async Task Delete(Guid id)

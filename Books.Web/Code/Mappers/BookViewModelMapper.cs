@@ -2,7 +2,7 @@
 using System.Linq;
 using Books.BL.Models;
 using Books.Web.Interfaces.Mappers;
-using Books.Web.ViewModels;
+using Books.Web.ViewModels.API;
 
 namespace Books.Web.Code.Mappers
 {

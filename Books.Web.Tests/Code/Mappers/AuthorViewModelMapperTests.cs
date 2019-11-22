@@ -3,7 +3,7 @@ using System.Linq;
 using AutoFixture;
 using Books.BL.Models;
 using Books.Web.Code.Mappers;
-using Books.Web.ViewModels;
+using Books.Web.ViewModels.API;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

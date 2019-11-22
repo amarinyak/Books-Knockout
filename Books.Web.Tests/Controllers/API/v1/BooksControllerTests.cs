@@ -7,7 +7,7 @@ using Books.BL.Interfaces.Providers;
 using Books.BL.Models;
 using Books.Web.Controllers.API.v1;
 using Books.Web.Interfaces.Mappers;
-using Books.Web.ViewModels;
+using Books.Web.ViewModels.API;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

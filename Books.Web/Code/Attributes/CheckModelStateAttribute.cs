@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using Books.Web.ViewModels;
+using Books.Web.ViewModels.API;
 
 namespace Books.Web.Code.Attributes
 {
