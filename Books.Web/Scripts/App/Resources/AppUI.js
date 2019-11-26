@@ -20,6 +20,11 @@ resources.appUI = (function() {
 		save: "Save",
 		cancel: "Cancel",
 		edit: "Edit",
-		delete: "Delete"
+		delete: "Delete",
+		
+		deleteImage: "Delete image",
+		noImage: "No image",
+
+		loading: "Loading..."
 	}
 })();

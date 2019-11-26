@@ -1,0 +1,12 @@
+﻿.pointer {
+	cursor: pointer;
+}
+
+.validationMessage {
+	display: block;
+	color: #dc3545;
+}
+
+.footer {
+	background-color: #f5f5f5;
+}

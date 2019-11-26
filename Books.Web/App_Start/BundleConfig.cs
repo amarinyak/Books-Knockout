@@ -8,6 +8,7 @@ namespace Books.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
                 "~/Scripts/jquery-3.4.1.js",
+                "~/Scripts/umd/popper.js",
                 "~/Scripts/knockout-3.5.1.debug.js",
                 "~/Scripts/knockout.validation.js",
                 "~/Scripts/knockout.validation.ru-RU.js",
@@ -22,7 +23,8 @@ namespace Books.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/site.css"));
+                "~/Content/font-awesome.css",
+                "~/Content/App/Main.css"));
         }
     }
 }

@@ -79,7 +79,7 @@ namespace Books.Web.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Books.
+        ///   Looks up a localized string similar to Book store.
         /// </summary>
         public static string SiteName {
             get {

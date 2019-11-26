@@ -5,12 +5,13 @@
 }
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12">
-			<h1>@AppUI.PageHeader</h1>
+		<div class="col">
+			<h2>@AppUI.PageHeader</h2>
+			@Session.SessionID
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col">
 			@Html.Partial("~/Views/Books/_BooksTable.cshtml", Model.Sort)
 		</div>
 	</div>
