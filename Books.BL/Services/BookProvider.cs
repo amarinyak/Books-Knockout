@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Books.BL.Interfaces.Mappers;
-using Books.BL.Interfaces.Providers;
+using Books.BL.Interfaces.Services;
 using Books.BL.Models;
 using Books.DAL.Interfaces.UnitOfWork;
 
-namespace Books.BL.Providers
+namespace Books.BL.Services
 {
 	public class BookProvider : IBookProvider
 	{
@@ -19,21 +19,21 @@ namespace Books.BL.Providers
 			_bookMapper = bookMapper;
 		}
 
-		public async Task<IEnumerable<Book>> GetList()
+		public async Task<IEnumerable<Book>> GetByToken(Guid token)
 		{
 			using (var uow = _uowFactory.Create())
 			{
-				var booksDb = await uow.BookRepository.Get();
+				var booksDb = await uow.BookRepository.GetByToken(token);
 
 				return _bookMapper.ToDomainModel(booksDb);
 			}
 		}
 
-		public async Task<Book> GetById(Guid bookId)
+		public async Task<Book> GetById(Guid bookId, Guid token)
 		{
 			using (var uow = _uowFactory.Create())
 			{
-				var bookDb = await uow.BookRepository.GetById(bookId);
+				var bookDb = await uow.BookRepository.GetById(bookId, token);
 
 				return _bookMapper.ToDomainModel(bookDb);
 			}
@@ -53,6 +53,22 @@ namespace Books.BL.Providers
 			return bookDb.Id;
 		}
 
+		public async Task Create(IEnumerable<Book> books)
+		{
+			using (var uow = _uowFactory.Create(true))
+			{
+				foreach (var book in books)
+				{
+					var bookDb = _bookMapper.ToDataModel(book);
+
+					await uow.BookRepository.Add(bookDb);
+					await uow.AuthorRepository.Merge(bookDb.Authors);
+				}
+
+				uow.Commit();
+			}
+		}
+
 		public async Task Update(Book book)
 		{
 			var bookDb = _bookMapper.ToDataModel(book);
@@ -65,12 +81,12 @@ namespace Books.BL.Providers
 			}
 		}
 
-		public async Task Delete(Guid bookId)
+		public async Task Delete(Guid bookId, Guid token)
 		{
 			using (var uow = _uowFactory.Create(true))
 			{
 				await uow.AuthorRepository.DeleteByBookId(bookId);
-				await uow.BookRepository.Delete(bookId);
+				await uow.BookRepository.Delete(bookId, token);
 				uow.Commit();
 			}
 		}

@@ -33,12 +33,15 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappers\IAuthorMapper.cs" />
     <Compile Include="Mappers\IBookMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\IBookProvider.cs" />
+    <Compile Include="Services\IBookProvider.cs" />
+    <Compile Include="Services\IBookCreator.cs" />
+    <Compile Include="Services\ITokenProvider.cs" />
     <Compile Include="Validation\IValidator.cs" />
   </ItemGroup>
   <ItemGroup>

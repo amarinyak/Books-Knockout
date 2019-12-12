@@ -19,6 +19,8 @@ namespace Books.BL.Models
 
         public string Image { get; set; }
 
+		public Guid Token { get; set; }
+
         public DateTime CreateDate { get; set; }
 
         public DateTime EditDate { get; set; }

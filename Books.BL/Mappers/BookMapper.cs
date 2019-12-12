@@ -31,6 +31,7 @@ namespace Books.BL.Mappers
 				Year = book.Year,
 				Isbn = book.Isbn,
 				Image = book.Image,
+				Token = book.Token,
 				CreateDate = book.CreateDate,
 				EditDate = book.EditDate,
 				Authors = _authorMapper
@@ -55,6 +56,7 @@ namespace Books.BL.Mappers
 				Year = book.Year,
 				Isbn = book.Isbn,
 				Image = book.Image,
+				Token = book.Token,
 				CreateDate = book.CreateDate,
 				EditDate = book.EditDate,
 				Authors = _authorMapper

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Books.BL.Interfaces.Mappers;
 using Books.BL.Models;
-using Books.BL.Providers;
+using Books.BL.Services;
 using Books.DAL.Interfaces.UnitOfWork;
 using Books.DAL.Models;
 using FluentAssertions;
@@ -36,28 +36,29 @@ namespace Books.BL.Tests.Providers
 		}
 
 		[TestMethod]
-		public async Task GetList()
+		public async Task GetByToken()
 		{
 			// Arrange
+			var token = _fixture.Create<Guid>();
 			var books = _fixture.CreateMany<Book>().ToList();
 			var booksDb = _fixture.CreateMany<BookDb>().ToList();
 
 			_uowFactory.Setup(p => p.Create(false))
 				.Returns(_uow.Object);
 			_uow.Setup(p => p.Dispose());
-			_uow.Setup(p => p.BookRepository.Get())
+			_uow.Setup(p => p.BookRepository.GetByToken(token))
 				.Returns(Task.FromResult<IEnumerable<BookDb>>(booksDb));
 			_bookMapper.Setup(p => p.ToDomainModel(booksDb))
 				.Returns(books);
 
 			// Act
-			var result = await _target.GetList();
+			var result = await _target.GetByToken(token);
 
 			// Assert
 			result.Should().BeEquivalentTo(books);
 
 			_uowFactory.Verify(p => p.Create(false), Times.Once);
-			_uow.Verify(p => p.BookRepository.Get(), Times.Once);
+			_uow.Verify(p => p.BookRepository.GetByToken(token), Times.Once);
 			_uow.Verify(p => p.Dispose(), Times.Once);
 			_bookMapper.Verify(p => p.ToDomainModel(booksDb), Times.Once);
 		}
@@ -66,25 +67,26 @@ namespace Books.BL.Tests.Providers
 		public async Task GetById()
 		{
 			// Arrange
+			var token = _fixture.Create<Guid>();
 			var book = _fixture.Create<Book>();
 			var bookDb = _fixture.Create<BookDb>();
 
 			_uowFactory.Setup(p => p.Create(false))
 				.Returns(_uow.Object);
 			_uow.Setup(p => p.Dispose());
-			_uow.Setup(p => p.BookRepository.GetById(book.Id))
+			_uow.Setup(p => p.BookRepository.GetById(book.Id, token))
 				.Returns(Task.FromResult(bookDb));
 			_bookMapper.Setup(p => p.ToDomainModel(bookDb))
 				.Returns(book);
 
 			// Act
-			var result = await _target.GetById(book.Id);
+			var result = await _target.GetById(book.Id, token);
 
 			// Assert
 			result.Should().BeEquivalentTo(book);
 
 			_uowFactory.Verify(p => p.Create(false), Times.Once);
-			_uow.Verify(p => p.BookRepository.GetById(book.Id), Times.Once);
+			_uow.Verify(p => p.BookRepository.GetById(book.Id, token), Times.Once);
 			_uow.Verify(p => p.Dispose(), Times.Once);
 			_bookMapper.Verify(p => p.ToDomainModel(bookDb), Times.Once);
 		}
@@ -93,6 +95,7 @@ namespace Books.BL.Tests.Providers
 		public async Task Delete()
 		{
 			// Arrange
+			var token = _fixture.Create<Guid>();
 			var bookId = _fixture.Create<Guid>();
 
 			_uowFactory.Setup(p => p.Create(true))
@@ -100,17 +103,17 @@ namespace Books.BL.Tests.Providers
 			_uow.Setup(p => p.Dispose());
 			_uow.Setup(p => p.AuthorRepository.DeleteByBookId(bookId))
 				.Returns(Task.FromResult(1));
-			_uow.Setup(p => p.BookRepository.Delete(bookId))
+			_uow.Setup(p => p.BookRepository.Delete(bookId, token))
 				.Returns(Task.FromResult(1));
 			_uow.Setup(p => p.Commit());
 
 			// Act
-			await _target.Delete(bookId);
+			await _target.Delete(bookId, token);
 
 			// Assert
 			_uowFactory.Verify(p => p.Create(true), Times.Once);
 			_uow.Verify(p => p.AuthorRepository.DeleteByBookId(bookId), Times.Once);
-			_uow.Verify(p => p.BookRepository.Delete(bookId), Times.Once);
+			_uow.Verify(p => p.BookRepository.Delete(bookId, token), Times.Once);
 			_uow.Verify(p => p.Commit(), Times.Once);
 			_uow.Verify(p => p.Dispose(), Times.Once);
 		}
