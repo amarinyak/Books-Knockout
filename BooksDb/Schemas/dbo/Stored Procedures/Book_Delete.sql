@@ -1,9 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[Book_Delete]
-	@Id UNIQUEIDENTIFIER
+	@BookId		UNIQUEIDENTIFIER,
+	@Token	UNIQUEIDENTIFIER
 AS
 BEGIN
 
 	DELETE FROM [dbo].[Book]
-	WHERE [Id] = @Id
+	WHERE [Id] = @BookId
+		AND [Token] = @Token
 
 END

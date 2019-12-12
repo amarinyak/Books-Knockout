@@ -6,7 +6,8 @@
     [Publisher] NVARCHAR(200) NULL,
     [Year] SMALLINT NOT NULL,
     [Isbn] VARCHAR(14) NULL,
-    [Image] VARCHAR(MAX) NULL,
+    [Image] VARCHAR(MAX) NULL, 
+    [Token] UNIQUEIDENTIFIER NOT NULL, 
     [CreateDate] DATETIME2 NOT NULL,
     [EditDate] DATETIME2 NOT NULL
 )

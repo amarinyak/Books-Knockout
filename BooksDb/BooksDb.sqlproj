@@ -69,7 +69,7 @@
     <Build Include="Schemas\dbo\Tables\Book.sql" />
     <Build Include="Schemas\dbo\Stored Procedures\Book_Delete.sql" />
     <Build Include="Schemas\dbo\Stored Procedures\Book_Add.sql" />
-    <Build Include="Schemas\dbo\Stored Procedures\Book_Get.sql" />
+    <Build Include="Schemas\dbo\Stored Procedures\Book_GetByToken.sql" />
     <Build Include="Schemas\dbo\Stored Procedures\Book_GetById.sql" />
     <Build Include="Schemas\dbo\Stored Procedures\Author_Merge.sql" />
     <Build Include="Schemas\dbo\Types\User-Defined Table Types\AuthorCollection.sql" />

@@ -28,7 +28,8 @@ namespace Books.DAL.Repositories
 					entity.Publisher,
 					entity.Year,
 					entity.Isbn,
-					entity.Image
+					entity.Image,
+					entity.Token
 				},
 				commandType: CommandType.StoredProcedure,
 				transaction: Transaction);
@@ -36,27 +37,42 @@ namespace Books.DAL.Repositories
 			return result;
 		}
 
-		public async Task<int> Delete(Guid bookId)
+		public async Task<int> Delete(Guid bookId, Guid token)
 		{
 			var result = await Connection.ExecuteAsync(
 				"[dbo].[Book_Delete]",
-				new { id = bookId },
+				new
+				{
+					bookId,
+					token
+				},
 				commandType: CommandType.StoredProcedure,
 				transaction: Transaction);
 
 			return result;
 		}
 
-		public async Task<IEnumerable<BookDb>> Get()
+		public async Task<IEnumerable<BookDb>> GetByToken(Guid token)
 		{
-			var result = await GetBooks("[dbo].[Book_Get]");
+			var result = await GetBooks(
+				"[dbo].[Book_GetByToken]",
+				new
+				{
+					token
+				});
 
 			return result.ToList();
 		}
 
-		public async Task<BookDb> GetById(Guid bookId)
+		public async Task<BookDb> GetById(Guid bookId, Guid token)
 		{
-			var result = await GetBooks("[dbo].[Book_GetById]", new { id = bookId });
+			var result = await GetBooks(
+				"[dbo].[Book_GetById]",
+				new
+				{
+					bookId,
+					token
+				});
 
 			return result.SingleOrDefault();
 		}
@@ -73,7 +89,8 @@ namespace Books.DAL.Repositories
 					entity.Publisher,
 					entity.Year,
 					entity.Isbn,
-					entity.Image
+					entity.Image,
+					entity.Token
 				},
 				commandType: CommandType.StoredProcedure,
 				transaction: Transaction);

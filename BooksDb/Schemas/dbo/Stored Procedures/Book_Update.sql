@@ -5,7 +5,8 @@
     @Publisher	NVARCHAR(200),
     @Year		SMALLINT,
     @Isbn		VARCHAR(14),
-    @Image		VARCHAR(MAX)
+    @Image		VARCHAR(MAX),
+	@Token		UNIQUEIDENTIFIER
 AS
 BEGIN
 
@@ -21,5 +22,6 @@ BEGIN
 		[Image] = @Image,
 		[EditDate] = @CurrentUtcDate
 	WHERE [Id] = @Id
+		AND [Token] = @Token
 
 END

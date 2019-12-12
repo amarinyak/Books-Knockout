@@ -9,11 +9,11 @@ namespace Books.DAL.Interfaces.Repository
 	{
 		Task<int> Add(BookDb entity);
 
-		Task<int> Delete(Guid bookId);
+		Task<int> Delete(Guid bookId, Guid token);
 
-		Task<IEnumerable<BookDb>> Get();
+		Task<IEnumerable<BookDb>> GetByToken(Guid token);
 
-		Task<BookDb> GetById(Guid bookId);
+		Task<BookDb> GetById(Guid bookId, Guid token);
 
 		Task<int> Update(BookDb entity);
 	}

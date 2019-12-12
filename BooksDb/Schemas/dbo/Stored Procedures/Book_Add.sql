@@ -5,7 +5,8 @@
     @Publisher	NVARCHAR(200),
     @Year		SMALLINT,
     @Isbn		VARCHAR(14),
-    @Image		VARCHAR(MAX)
+    @Image		VARCHAR(MAX),
+	@Token		UNIQUEIDENTIFIER
 AS
 BEGIN
 
@@ -19,6 +20,7 @@ BEGIN
 		[Year],
 		[Isbn],
 		[Image],
+		[Token],
 		[CreateDate],
 		[EditDate]
 	)
@@ -30,6 +32,7 @@ BEGIN
 		@Year,
 		@Isbn,
 		@Image,
+		@Token,
 		@CurrentUtcDate,
 		@CurrentUtcDate
 	)

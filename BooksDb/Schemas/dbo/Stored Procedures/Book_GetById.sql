@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[Book_GetById]
-	@Id UNIQUEIDENTIFIER
+	@BookId		UNIQUEIDENTIFIER,
+	@Token	UNIQUEIDENTIFIER
 AS
 BEGIN
 
@@ -11,6 +12,7 @@ BEGIN
 		b.[Year],
 		b.[Isbn],
 		b.[Image],
+		b.[Token],
 		b.[CreateDate],
 		b.[EditDate],
 		a.[BookId],
@@ -20,7 +22,8 @@ BEGIN
 	FROM [dbo].[Book] b
 		LEFT JOIN [dbo].[Author] a
 			ON a.[BookId] = b.[Id]
-	WHERE b.[Id] = @Id
+	WHERE b.[Id] = @BookId
+		AND b.[Token] = @Token
 	ORDER BY a.FirstName, a.LastName
 
 END
