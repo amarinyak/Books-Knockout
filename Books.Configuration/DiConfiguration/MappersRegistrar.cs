@@ -2,7 +2,7 @@
 using Books.BL.Interfaces.Mappers;
 using Books.BL.Mappers;
 
-namespace Books.Configuration.DI
+namespace Books.Configuration.DiConfiguration
 {
 	public static class MappersRegistrar
 	{

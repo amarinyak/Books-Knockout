@@ -41,11 +41,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigFile.cs" />
-    <Compile Include="DI\MappersRegistrar.cs" />
+    <Compile Include="DiConfiguration\MappersRegistrar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DI\BusinessLogicRegistrar.cs" />
-    <Compile Include="DI\DataAccessRegistrar.cs" />
+    <Compile Include="DiConfiguration\BusinessLogicRegistrar.cs" />
+    <Compile Include="DiConfiguration\DataAccessRegistrar.cs" />
+    <Compile Include="ApiConfig.cs" />
+    <Compile Include="WebConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

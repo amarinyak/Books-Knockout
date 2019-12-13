@@ -11,7 +11,7 @@ var BooksViewModel = function (booksTable, editModal, sortField, descSort) {
     self.descSort = ko.observable(descSort);
 
     self.getBooks = function () {
-	    BooksDataProvider.getList().done(function (books) {
+	    booksApp.services.booksProvider.get().done(function (books) {
 	        self.updateBooks(books);
             self.isLoading(false);
         });
@@ -43,13 +43,13 @@ var BooksViewModel = function (booksTable, editModal, sortField, descSort) {
     }
 
     self.initHeaders = function () {
-        self.headers.push(new TableHeaderViewModel(resources.appUI.cover));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.title, "title"));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.author));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.pageCount, "pageCount"));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.year, "year"));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.publisher, "publisher"));
-        self.headers.push(new TableHeaderViewModel(resources.appUI.isbn));
+        self.headers.push(new TableHeaderViewModel(booksApp.resources.appUI.cover));
+        self.headers.push(new TableHeaderViewModel(booksApp.resources.appUI.title, "title"));
+        self.headers.push(new TableHeaderViewModel(booksApp.resources.appUI.author));
+        self.headers.push(new TableHeaderViewModel(booksApp.resources.appUI.pageCount, "pageCount"));
+        self.headers.push(new TableHeaderViewModel(booksApp.resources.appUI.year, "year"));
+        self.headers.push(new TableHeaderViewModel(booksApp.resources.appUI.publisher, "publisher"));
+        self.headers.push(new TableHeaderViewModel(booksApp.resources.appUI.isbn));
         self.headers.push(new TableHeaderViewModel(""));
     }
 
@@ -69,7 +69,7 @@ var BooksViewModel = function (booksTable, editModal, sortField, descSort) {
     }
 
     self.delete = function (book) {
-	    BooksDataProvider.delete(book).done(function () {
+	    booksApp.services.booksProvider.delete(book).done(function () {
 	        self.books.remove(book);
         });
     }
@@ -88,7 +88,7 @@ var BooksViewModel = function (booksTable, editModal, sortField, descSort) {
     }
 
 	function editModalSaveCallback(bookId) {
-		BooksDataProvider.getById(bookId).done(function (book) {
+		booksApp.services.booksProvider.getById(bookId).done(function (book) {
 			self.updateBooks([book]);
 		});
 

@@ -5,18 +5,14 @@ namespace Books.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string sortField = "title", bool descSort = false)
-        {
-            var model = new HomeViewModel
-            {
-                Sort = new SortViewModel
-                {
-                    SortField = sortField,
-                    DescSort = descSort
-                }
-            };
+		public ActionResult Index()
+		{
+			var model = new HomeViewModel
+			{
+				AppConfig = AppConfigViewModel.Create()
+			};
 
-            return View(model);
+	        return View(model);
         }
     }
 }

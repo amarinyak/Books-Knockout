@@ -2,6 +2,6 @@
 {
     public class HomeViewModel
     {
-        public SortViewModel Sort { get; set; }
+        public AppConfigViewModel AppConfig { get; set; }
     }
 }

@@ -5,8 +5,8 @@ var BookEditViewModel = function(book, saveCallback) {
 	var isEditMode = book != null;
 	
     self.title = isEditMode
-	    ? resources.appUI.editBook
-	    : resources.appUI.addBook;
+	    ? booksApp.resources.appUI.editBook
+	    : booksApp.resources.appUI.addBook;
 
     if (isEditMode) {
 	    self.book = new BookViewModel(ko.toJS(book));
@@ -22,11 +22,11 @@ var BookEditViewModel = function(book, saveCallback) {
 	    if (!bookEdit.book.isValid()) return;
 
 	    if (isEditMode) {
-		    BooksDataProvider.update(bookEdit.book).done(function() {
+		    booksApp.services.booksProvider.update(bookEdit.book).done(function() {
 			    saveCallback(book.id());
 		    });
 	    } else {
-		    BooksDataProvider.create(bookEdit.book).then(function(bookId) {
+		    booksApp.services.booksProvider.create(bookEdit.book).then(function(bookId) {
 			    saveCallback(bookId);
 		    });
 	    }

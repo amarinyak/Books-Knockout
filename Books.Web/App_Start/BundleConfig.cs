@@ -16,10 +16,12 @@ namespace Books.Web
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/App/*.js",
+                "~/Scripts/App/Utils/*.js",
                 "~/Scripts/App/Configs/*.js",
                 "~/Scripts/App/Resources/*.js",
                 "~/Scripts/App/Services/*.js",
-                "~/Scripts/App/ViewModels/*.js"));
+                "~/Scripts/App/ViewModels/*.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",

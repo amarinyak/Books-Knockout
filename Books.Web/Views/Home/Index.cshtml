@@ -1,18 +1,19 @@
 ﻿@using Books.Web.App_LocalResources
-@model Books.Web.ViewModels.HomeViewModel
+@using Books.Web.ViewModels
+@model HomeViewModel
 @{
 	ViewBag.Title = AppUI.HomePageTitle;
 }
+@Html.HiddenFor(p => p.AppConfig.WebApiUrl)
 <div class="container">
 	<div class="row">
 		<div class="col">
 			<h2>@AppUI.PageHeader</h2>
-			@Session.SessionID
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
-			@Html.Partial("~/Views/Books/_BooksTable.cshtml", Model.Sort)
+			@Html.Partial("~/Views/Books/_BooksTable.cshtml")
 		</div>
 	</div>
 </div>
