@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Books.Configuration.DiConfiguration;
+using Books.WebApi.Configuration.DiConfiguration;
 
 namespace Books.WebApi.DiConfiguration
 {

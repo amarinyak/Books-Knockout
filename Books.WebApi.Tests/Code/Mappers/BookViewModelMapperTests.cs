@@ -49,6 +49,7 @@ namespace Books.WebApi.Tests.Code.Mappers
 				Year = bookVm.Year,
 				Isbn = bookVm.Isbn,
 				Image = bookVm.Image,
+				Token = token,
 				CreateDate = bookVm.CreateDate,
 				EditDate = bookVm.EditDate,
 				Authors = authors
@@ -84,6 +85,7 @@ namespace Books.WebApi.Tests.Code.Mappers
 				Year = bookVm.Year,
 				Isbn = bookVm.Isbn,
 				Image = bookVm.Image,
+				Token = token,
 				CreateDate = bookVm.CreateDate,
 				EditDate = bookVm.EditDate,
 				Authors = null
@@ -123,6 +125,7 @@ namespace Books.WebApi.Tests.Code.Mappers
 					Year = bookVm.Year,
 					Isbn = bookVm.Isbn,
 					Image = bookVm.Image,
+					Token = token,
 					CreateDate = bookVm.CreateDate,
 					EditDate = bookVm.EditDate,
 					Authors = authors
@@ -198,7 +201,7 @@ namespace Books.WebApi.Tests.Code.Mappers
 			_authorViewModelMapper.Setup(p => p.ToViewModel(book.Authors))
 				.Returns((IEnumerable<AuthorViewModel>)null);
 
-			var expected = new Book
+			var expected = new BookViewModel
 			{
 				Id = book.Id,
 				Title = book.Title,

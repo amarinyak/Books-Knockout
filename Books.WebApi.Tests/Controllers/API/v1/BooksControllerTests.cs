@@ -45,6 +45,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookProvider.Setup(p => p.GetByToken(token)).Returns(Task.FromResult<IEnumerable<Book>>(books));
 			_bookMapper.Setup(p => p.ToViewModel(books)).Returns(booksVm);
+            _tokenProvider.Setup(p => p.GetToken(_target.Request)).Returns(token);
 
 			// Act
 			var result = await _target.GetByToken();
@@ -54,6 +55,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookProvider.Verify(p => p.GetByToken(token), Times.Once);
 			_bookMapper.Verify(p => p.ToViewModel(books), Times.Once);
+            _tokenProvider.Verify(p => p.GetToken(_target.Request));
 		}
 
 		[TestMethod]
@@ -67,6 +69,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookProvider.Setup(p => p.GetById(id, token)).Returns(Task.FromResult(book));
 			_bookMapper.Setup(p => p.ToViewModel(book)).Returns(bookVm);
+            _tokenProvider.Setup(p => p.GetToken(_target.Request)).Returns(token);
 
 			// Act
 			var result = await _target.GetById(id);
@@ -76,6 +79,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookProvider.Verify(p => p.GetById(id, token), Times.Once);
 			_bookMapper.Verify(p => p.ToViewModel(book), Times.Once);
+            _tokenProvider.Verify(p => p.GetToken(_target.Request));
 		}
 
 		[TestMethod]
@@ -91,6 +95,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookMapper.Setup(p => p.ToDomainModel(bookVm, token)).Returns(book);
 			_bookProvider.Setup(p => p.Create(book)).Returns(Task.FromResult(id));
+            _tokenProvider.Setup(p => p.GetToken(_target.Request)).Returns(token);
 
 			// Act
 			var result = await _target.Create(bookVm);
@@ -100,6 +105,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookMapper.Verify(p => p.ToDomainModel(bookVm, token), Times.Once);
 			_bookProvider.Verify(p => p.Create(book), Times.Once);
+            _tokenProvider.Verify(p => p.GetToken(_target.Request));
 		}
 
 		[TestMethod]
@@ -112,6 +118,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookMapper.Setup(p => p.ToDomainModel(bookVm, token)).Returns(book);
 			_bookProvider.Setup(p => p.Update(book)).Returns(Task.CompletedTask);
+            _tokenProvider.Setup(p => p.GetToken(_target.Request)).Returns(token);
 
 			// Act
 			await _target.Update(bookVm);
@@ -119,6 +126,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 			// Assert
 			_bookMapper.Verify(p => p.ToDomainModel(bookVm, token), Times.Once);
 			_bookProvider.Verify(p => p.Update(book), Times.Once);
+            _tokenProvider.Verify(p => p.GetToken(_target.Request));
 		}
 
 		[TestMethod]
@@ -129,12 +137,14 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 			var id = _fixture.Create<Guid>();
 
 			_bookProvider.Setup(p => p.Delete(id, token)).Returns(Task.CompletedTask);
+            _tokenProvider.Setup(p => p.GetToken(_target.Request)).Returns(token);
 
 			// Act
-			 await _target.Delete(id);
+			await _target.Delete(id);
 
 			// Assert
 			_bookProvider.Verify(p => p.Delete(id, token), Times.Once);
+            _tokenProvider.Verify(p => p.GetToken(_target.Request));
 		}
 	}
 }

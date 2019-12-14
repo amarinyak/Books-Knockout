@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6367D09D-8B90-48AD-AEB1-E07AF98C834E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Books.WebApi.Configuration</RootNamespace>
+    <AssemblyName>Books.WebApi.Configuration</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DiConfiguration\BusinessLogicRegistrar.cs" />
+    <Compile Include="DiConfiguration\DataAccessRegistrar.cs" />
+    <Compile Include="DiConfiguration\MappersRegistrar.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ApiConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Books.BL.Interfaces\Books.BL.Interfaces.csproj">
+      <Project>{5D50C6FF-9110-422D-999B-9FCDA17262F8}</Project>
+      <Name>Books.BL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books.BL\Books.BL.csproj">
+      <Project>{E8AE66D5-DD86-4132-9E16-D0A488C0BB65}</Project>
+      <Name>Books.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books.DAL.Interfaces\Books.DAL.Interfaces.csproj">
+      <Project>{87EFDEAC-3A75-415F-BBAC-ED1A828B534A}</Project>
+      <Name>Books.DAL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books.DAL\Books.DAL.csproj">
+      <Project>{05D1DBDB-C1B0-44AA-9C8C-51BBEA39D83E}</Project>
+      <Name>Books.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

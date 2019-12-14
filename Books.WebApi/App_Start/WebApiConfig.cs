@@ -1,8 +1,8 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Cors;
-using Books.Configuration;
 using Books.WebApi.Code.Attributes;
 using Books.WebApi.Code.Auth;
+using Books.WebApi.Configuration;
 
 namespace Books.WebApi
 {

@@ -48,6 +48,7 @@ namespace Books.BL.Tests.Mappers
 				Year = book.Year,
 				Isbn = book.Isbn,
 				Image = book.Image,
+				Token = book.Token,
 				CreateDate = book.CreateDate,
 				EditDate = book.EditDate,
 				Authors = authorsDb
@@ -82,6 +83,7 @@ namespace Books.BL.Tests.Mappers
 				Year = book.Year,
 				Isbn = book.Isbn,
 				Image = book.Image,
+				Token = book.Token,
 				CreateDate = book.CreateDate,
 				EditDate = book.EditDate,
 				Authors = null
@@ -123,6 +125,7 @@ namespace Books.BL.Tests.Mappers
 					Year = book.Year,
 					Isbn = book.Isbn,
 					Image = book.Image,
+					Token = book.Token,
 					CreateDate = book.CreateDate,
 					EditDate = book.EditDate,
 					Authors = authorsDb
@@ -170,6 +173,7 @@ namespace Books.BL.Tests.Mappers
 				Year = bookDb.Year,
 				Isbn = bookDb.Isbn,
 				Image = bookDb.Image,
+				Token = bookDb.Token,
 				CreateDate = bookDb.CreateDate,
 				EditDate = bookDb.EditDate,
 				Authors = authors
@@ -204,6 +208,7 @@ namespace Books.BL.Tests.Mappers
 				Year = bookDb.Year,
 				Isbn = bookDb.Isbn,
 				Image = bookDb.Image,
+				Token = bookDb.Token,
 				CreateDate = bookDb.CreateDate,
 				EditDate = bookDb.EditDate,
 				Authors = null
@@ -242,6 +247,7 @@ namespace Books.BL.Tests.Mappers
 					Year = bookDb.Year,
 					Isbn = bookDb.Isbn,
 					Image = bookDb.Image,
+					Token = bookDb.Token,
 					CreateDate = bookDb.CreateDate,
 					EditDate = bookDb.EditDate,
 					Authors = authors
