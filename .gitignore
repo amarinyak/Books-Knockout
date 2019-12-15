@@ -7,3 +7,4 @@ packages
 *.mdf
 *.jfm
 *.dbmdl
+/TestResults

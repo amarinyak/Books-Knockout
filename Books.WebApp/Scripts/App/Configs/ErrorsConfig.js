@@ -7,7 +7,7 @@ extend(booksApp, {
 				initAjaxErrors: function() {
 					$(document).ajaxError(function(e, xhr) {
 						if (xhr.responseJSON) {
-							alert(xhr.responseJSON.exceptionMessage);
+							alert(JSON.stringify(xhr.responseJSON));
 						} else {
 							alert(xhr.statusText);
 						}

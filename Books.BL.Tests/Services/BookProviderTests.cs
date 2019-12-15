@@ -12,7 +12,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Books.BL.Tests.Providers
+namespace Books.BL.Tests.Services
 {
 	[TestClass]
 	public class BookProviderTests
@@ -148,6 +148,41 @@ namespace Books.BL.Tests.Providers
 			_uow.Verify(p => p.Commit(), Times.Once);
 			_uow.Verify(p => p.Dispose(), Times.Once);
 			_bookMapper.Verify(p => p.ToDataModel(book), Times.Once);
+		}
+
+		[TestMethod]
+        public async Task Create_Collection()
+        {
+			// Arrange
+			var books = _fixture.CreateMany<(Book book, BookDb bookDb)>().ToList();
+
+            foreach (var (book, bookDb) in books)
+            {
+                _uowFactory.Setup(p => p.Create(true))
+                    .Returns(_uow.Object);
+                _uow.Setup(p => p.Dispose());
+                _uow.Setup(p => p.BookRepository.Add(bookDb))
+                    .Returns(Task.FromResult(1));
+                _uow.Setup(p => p.AuthorRepository.Merge(bookDb.Authors))
+                    .Returns(Task.FromResult(bookDb.Authors.Count));
+                _uow.Setup(p => p.Commit());
+                _bookMapper.Setup(p => p.ToDataModel(book))
+                    .Returns(bookDb);
+			}
+
+            // Act
+            await _target.Create(books.Select(p => p.book));
+
+			// Assert
+            foreach (var (book, bookDb) in books)
+            {
+                _uowFactory.Verify(p => p.Create(true), Times.Once);
+                _uow.Verify(p => p.BookRepository.Add(bookDb), Times.Once);
+                _uow.Verify(p => p.AuthorRepository.Merge(bookDb.Authors), Times.Once);
+                _uow.Verify(p => p.Commit(), Times.Once);
+                _uow.Verify(p => p.Dispose(), Times.Once);
+                _bookMapper.Verify(p => p.ToDataModel(book), Times.Once);
+			}
 		}
 
 		[TestMethod]

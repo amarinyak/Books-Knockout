@@ -12,7 +12,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Books.WebApi.Tests.Controllers.API.v1
+namespace Books.WebApi.Tests.Controllers.v1
 {
 	[TestClass]
 	public class BooksControllerTests
@@ -55,7 +55,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookProvider.Verify(p => p.GetByToken(token), Times.Once);
 			_bookMapper.Verify(p => p.ToViewModel(books), Times.Once);
-            _tokenProvider.Verify(p => p.GetToken(_target.Request));
+            _tokenProvider.Verify(p => p.GetToken(_target.Request), Times.Once);
 		}
 
 		[TestMethod]
@@ -79,7 +79,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookProvider.Verify(p => p.GetById(id, token), Times.Once);
 			_bookMapper.Verify(p => p.ToViewModel(book), Times.Once);
-            _tokenProvider.Verify(p => p.GetToken(_target.Request));
+            _tokenProvider.Verify(p => p.GetToken(_target.Request), Times.Once);
 		}
 
 		[TestMethod]
@@ -105,7 +105,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			_bookMapper.Verify(p => p.ToDomainModel(bookVm, token), Times.Once);
 			_bookProvider.Verify(p => p.Create(book), Times.Once);
-            _tokenProvider.Verify(p => p.GetToken(_target.Request));
+            _tokenProvider.Verify(p => p.GetToken(_target.Request), Times.Once);
 		}
 
 		[TestMethod]
@@ -126,7 +126,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 			// Assert
 			_bookMapper.Verify(p => p.ToDomainModel(bookVm, token), Times.Once);
 			_bookProvider.Verify(p => p.Update(book), Times.Once);
-            _tokenProvider.Verify(p => p.GetToken(_target.Request));
+            _tokenProvider.Verify(p => p.GetToken(_target.Request), Times.Once);
 		}
 
 		[TestMethod]
@@ -144,7 +144,7 @@ namespace Books.WebApi.Tests.Controllers.API.v1
 
 			// Assert
 			_bookProvider.Verify(p => p.Delete(id, token), Times.Once);
-            _tokenProvider.Verify(p => p.GetToken(_target.Request));
+            _tokenProvider.Verify(p => p.GetToken(_target.Request), Times.Once);
 		}
 	}
 }
