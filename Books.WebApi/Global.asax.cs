@@ -10,7 +10,7 @@ namespace Books.WebApi
 		protected void Application_Start()
 		{
 			var container = DiConfig.Container;
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+			GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 			GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 		}

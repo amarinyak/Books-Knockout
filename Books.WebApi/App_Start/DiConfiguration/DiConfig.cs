@@ -7,8 +7,8 @@ using Books.WebApi.Configuration.DiConfiguration;
 
 namespace Books.WebApi.DiConfiguration
 {
-    public static class DiConfig
-    {
+	public static class DiConfig
+	{
 		public static IContainer Container => InnerContainer.Value;
 
 		private static readonly Lazy<IContainer> InnerContainer = new Lazy<IContainer>(() =>
@@ -22,8 +22,8 @@ namespace Books.WebApi.DiConfiguration
 			builder.RegisterBusinessLogic();
 			builder.RegisterMappers();
 			builder.RegisterViewModelMappers();
-			
+
 			return builder.Build();
 		});
-    }
+	}
 }

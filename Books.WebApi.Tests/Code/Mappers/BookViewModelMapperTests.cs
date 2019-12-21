@@ -131,7 +131,7 @@ namespace Books.WebApi.Tests.Code.Mappers
 					Authors = authors
 				});
 			}
-			
+
 			// Act
 			var result = _target.ToDomainModel(booksVm, token);
 
@@ -253,7 +253,7 @@ namespace Books.WebApi.Tests.Code.Mappers
 					Authors = authorsVm
 				});
 			}
-			
+
 			// Act
 			var result = _target.ToViewModel(books);
 
