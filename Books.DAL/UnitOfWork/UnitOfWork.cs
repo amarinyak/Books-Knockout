@@ -1,5 +1,5 @@
-﻿using System.Data;
-using System.Data.SqlClient;
+﻿using System;
+using System.Data;
 using Books.DAL.Interfaces.Repository;
 using Books.DAL.Interfaces.UnitOfWork;
 using Books.DAL.Repositories;
@@ -13,9 +13,9 @@ namespace Books.DAL.UnitOfWork
 		private IAuthorRepository _authorRepository;
 		private IBookRepository _bookRepository;
 
-		public UnitOfWork(string connectionString, bool useTransaction)
+		public UnitOfWork(IDbConnection connection, bool useTransaction)
 		{
-			_connection = new SqlConnection(connectionString);
+			_connection = connection;
 			_connection.Open();
 
 			if (useTransaction)
@@ -29,7 +29,12 @@ namespace Books.DAL.UnitOfWork
 		public IBookRepository BookRepository => _bookRepository ?? (_bookRepository = new BookRepository(_connection, _transaction));
 
 		public void Commit()
-		{
+        {
+            if (_transaction == null)
+            {
+                throw new NullReferenceException("The transaction is not set");
+            }
+            
 			try
 			{
 				_transaction.Commit();
@@ -50,7 +55,7 @@ namespace Books.DAL.UnitOfWork
 		public void Dispose()
 		{
 			_transaction?.Dispose();
-			_connection?.Dispose();
+			_connection.Dispose();
 		}
 
 		private void ResetRepositories()

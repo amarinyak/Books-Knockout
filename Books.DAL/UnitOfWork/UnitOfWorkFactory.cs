@@ -1,19 +1,21 @@
-﻿using Books.DAL.Interfaces.UnitOfWork;
+﻿using Books.DAL.Interfaces.Common;
+using Books.DAL.Interfaces.UnitOfWork;
 
 namespace Books.DAL.UnitOfWork
 {
 	public class UnitOfWorkFactory : IUnitOfWorkFactory
 	{
-		private readonly string _connectionString;
+        private readonly IDbConnectionFactory _connectionFactory;
 
-		public UnitOfWorkFactory(string connectionString)
-		{
-			_connectionString = connectionString;
-		}
+		public UnitOfWorkFactory(IDbConnectionFactory connectionFactory)
+        {
+            _connectionFactory = connectionFactory;
+        }
 
 		public IUnitOfWork Create(bool useTransaction = false)
 		{
-			return new UnitOfWork(_connectionString, useTransaction);
+			var connection = _connectionFactory.Create();
+			return new UnitOfWork(connection, useTransaction);
 		}
 	}
 }
