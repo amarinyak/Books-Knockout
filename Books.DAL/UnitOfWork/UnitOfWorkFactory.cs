@@ -5,12 +5,12 @@ namespace Books.DAL.UnitOfWork
 {
 	public class UnitOfWorkFactory : IUnitOfWorkFactory
 	{
-        private readonly IDbConnectionFactory _connectionFactory;
+		private readonly IDbConnectionFactory _connectionFactory;
 
 		public UnitOfWorkFactory(IDbConnectionFactory connectionFactory)
-        {
-            _connectionFactory = connectionFactory;
-        }
+		{
+			_connectionFactory = connectionFactory;
+		}
 
 		public IUnitOfWork Create(bool useTransaction = false)
 		{

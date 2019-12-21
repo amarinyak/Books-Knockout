@@ -2,8 +2,8 @@
 
 namespace Books.DAL.Interfaces.Common
 {
-    public interface IDbConnectionFactory
-    {
-        IDbConnection Create();
-    }
+	public interface IDbConnectionFactory
+	{
+		IDbConnection Create();
+	}
 }

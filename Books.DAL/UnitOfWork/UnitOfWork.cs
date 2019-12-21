@@ -29,12 +29,12 @@ namespace Books.DAL.UnitOfWork
 		public IBookRepository BookRepository => _bookRepository ?? (_bookRepository = new BookRepository(_connection, _transaction));
 
 		public void Commit()
-        {
-            if (_transaction == null)
-            {
-                throw new NullReferenceException("The transaction is not set");
-            }
-            
+		{
+			if (_transaction == null)
+			{
+				throw new NullReferenceException("The transaction is not set");
+			}
+
 			try
 			{
 				_transaction.Commit();
