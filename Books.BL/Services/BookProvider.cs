@@ -42,7 +42,7 @@ namespace Books.BL.Services
 		public async Task<Guid> Create(Book book)
 		{
 			var bookDb = _bookMapper.ToDataModel(book);
-			
+
 			using (var uow = _uowFactory.Create(true))
 			{
 				await uow.BookRepository.Add(bookDb);
