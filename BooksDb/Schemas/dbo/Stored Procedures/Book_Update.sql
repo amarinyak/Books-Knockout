@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[Book_Update]
 	@Id			UNIQUEIDENTIFIER,
-    @Title		NVARCHAR(200),
-    @PageCount	SMALLINT,
-    @Publisher	NVARCHAR(200),
-    @Year		SMALLINT,
-    @Isbn		VARCHAR(14),
-    @Image		VARCHAR(MAX),
+	@Title		NVARCHAR(200),
+	@PageCount	SMALLINT,
+	@Publisher	NVARCHAR(200),
+	@Year		SMALLINT,
+	@Isbn		VARCHAR(14),
+	@Image		VARCHAR(MAX),
 	@Token		UNIQUEIDENTIFIER
 AS
 BEGIN

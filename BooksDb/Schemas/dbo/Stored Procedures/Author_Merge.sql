@@ -12,12 +12,12 @@ BEGIN
 	MERGE FilteredAuthors t USING @AuthorCollection s
 	ON (s.[Id] = t.[Id])
 	WHEN MATCHED THEN
-        UPDATE SET
+		UPDATE SET
 			t.[BookId] = s.[BookId],
 			t.[FirstName] = s.[FirstName],
 			t.[LastName] = s.[LastName]
 	WHEN NOT MATCHED THEN  
-        INSERT (
+		INSERT (
 			[Id],
 			[BookId],
 			[FirstName],
