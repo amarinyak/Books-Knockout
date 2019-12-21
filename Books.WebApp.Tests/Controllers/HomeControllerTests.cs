@@ -11,16 +11,16 @@ namespace Books.WebApp.Tests.Controllers
 	[TestClass]
 	public class HomeControllerTests
 	{
-        private Fixture _fixture;
+		private Fixture _fixture;
 		private Mock<IHomeViewModelBuilder> _homeViewModelBuilder;
 		private HomeController _target;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-            _fixture = new Fixture();
+			_fixture = new Fixture();
 
-            _homeViewModelBuilder = new Mock<IHomeViewModelBuilder>(MockBehavior.Strict);
+			_homeViewModelBuilder = new Mock<IHomeViewModelBuilder>(MockBehavior.Strict);
 
 			_target = new HomeController(_homeViewModelBuilder.Object);
 		}
@@ -29,19 +29,19 @@ namespace Books.WebApp.Tests.Controllers
 		public void Index()
 		{
 			// Arrange
-            var homeViewModel = _fixture.Create<HomeViewModel>();
+			var homeViewModel = _fixture.Create<HomeViewModel>();
 
-            _homeViewModelBuilder.Setup(p => p.Build())
-                .Returns(homeViewModel);
+			_homeViewModelBuilder.Setup(p => p.Build())
+				.Returns(homeViewModel);
 
-            // Act
+			// Act
 			var result = _target.Index() as ViewResult;
-			
+
 			// Assert
 			Assert.IsNotNull(result);
-            Assert.AreEqual(homeViewModel, result.Model);
+			Assert.AreEqual(homeViewModel, result.Model);
 
-            _homeViewModelBuilder.Verify(p => p.Build(), Times.Once);
+			_homeViewModelBuilder.Verify(p => p.Build(), Times.Once);
 		}
 	}
 }

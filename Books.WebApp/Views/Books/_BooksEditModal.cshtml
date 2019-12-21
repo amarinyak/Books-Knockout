@@ -1,19 +1,19 @@
 ﻿<div class="modal fade js-books-edit-modal" data-bind="with: editModel" tabindex="-1" role="dialog" aria-labelledby="booksEditModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-	        <div class="modal-header">
-		        <h5 id="booksEditModalLabel" class="modal-title" data-bind="text: title"></h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 id="booksEditModalLabel" class="modal-title" data-bind="text: title"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-		        </button>
-	        </div>
-            <div class="modal-body">
-                @Html.Partial("~/Views/Books/_BooksEditForm.cshtml")
-            </div>
-	        <div class="modal-footer">
-		        <button type="button" class="btn btn-success" data-bind="text: booksApp.resources.appUI.save, click: save"></button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bind="text: booksApp.resources.appUI.cancel"></button>
-	        </div>
-        </div>
-    </div>
+				</button>
+			</div>
+			<div class="modal-body">
+				@Html.Partial("~/Views/Books/_BooksEditForm.cshtml")
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-bind="text: booksApp.resources.appUI.save, click: save"></button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" data-bind="text: booksApp.resources.appUI.cancel"></button>
+			</div>
+		</div>
+	</div>
 </div>

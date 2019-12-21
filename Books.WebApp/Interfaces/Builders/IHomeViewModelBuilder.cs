@@ -2,8 +2,8 @@
 
 namespace Books.WebApp.Interfaces.Builders
 {
-    public interface IHomeViewModelBuilder
-    {
-        HomeViewModel Build();
-    }
+	public interface IHomeViewModelBuilder
+	{
+		HomeViewModel Build();
+	}
 }

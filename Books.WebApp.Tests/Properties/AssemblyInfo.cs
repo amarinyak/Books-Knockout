@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Books.WebApp.Tests")]
@@ -15,6 +14,5 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("1c3e700c-eb45-46d6-85cf-7141b11c3936")]
 
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
