@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Books.BL.Tests")]
@@ -15,6 +14,5 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("34fedbfd-d7e6-4eb5-b698-35b492fa500e")]
 
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

@@ -7,46 +7,46 @@ using JsonSerializer = Books.BL.Serializers.JsonSerializer;
 
 namespace Books.BL.Tests.Serializers
 {
-    [TestClass]
-    public class JsonSerializerTests
-    {
-        private Fixture _fixture;
-        private JsonSerializer _target;
-        private JsonSerializerSettings _serializerSettings;
+	[TestClass]
+	public class JsonSerializerTests
+	{
+		private Fixture _fixture;
+		private JsonSerializer _target;
+		private JsonSerializerSettings _serializerSettings;
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _fixture = new Fixture();
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_fixture = new Fixture();
 
-            _target = new JsonSerializer();
+			_target = new JsonSerializer();
 
-            _serializerSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new DefaultContractResolver
-                {
-                    NamingStrategy = new CamelCaseNamingStrategy()
-                },
-                Formatting = Formatting.Indented
-            };
-        }
+			_serializerSettings = new JsonSerializerSettings
+			{
+				ContractResolver = new DefaultContractResolver
+				{
+					NamingStrategy = new CamelCaseNamingStrategy()
+				},
+				Formatting = Formatting.Indented
+			};
+		}
 
-        [TestMethod]
-        public void Serialize()
-        {
-            // Arrange
-            var value = new
-            {
-                TestProperty = _fixture.Create<string>()
-            };
+		[TestMethod]
+		public void Serialize()
+		{
+			// Arrange
+			var value = new
+			{
+				TestProperty = _fixture.Create<string>()
+			};
 
-            var expected = JsonConvert.SerializeObject(value, _serializerSettings);
+			var expected = JsonConvert.SerializeObject(value, _serializerSettings);
 
-            // Act
-            var result = _target.Serialize(value);
+			// Act
+			var result = _target.Serialize(value);
 
-            // Assert
-            result.Should().BeEquivalentTo(expected);
-        }
-    }
+			// Assert
+			result.Should().BeEquivalentTo(expected);
+		}
+	}
 }

@@ -68,7 +68,7 @@ namespace Books.BL.Tests.Mappers
 
 			// Assert
 			Assert.AreNotEqual(Guid.Empty, result.Id);
-			
+
 			expected.Id = result.Id;
 			result.Should().BeEquivalentTo(expected);
 		}

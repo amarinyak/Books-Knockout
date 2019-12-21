@@ -131,7 +131,7 @@ namespace Books.BL.Tests.Mappers
 					Authors = authorsDb
 				});
 			}
-			
+
 			// Act
 			var result = _target.ToDataModel(books);
 
@@ -253,7 +253,7 @@ namespace Books.BL.Tests.Mappers
 					Authors = authors
 				});
 			}
-			
+
 			// Act
 			var result = _target.ToDomainModel(booksDb);
 
