@@ -20,7 +20,7 @@ namespace Books.DAL.Repositories
 		{
 			using (var authorCollection = AuthorCollectionDataTable.Init(authorDbs))
 			{
-				var result =  await Connection.ExecuteAsync(
+				var result = await Connection.ExecuteAsync(
 					"[dbo].[Author_Merge]",
 					new { authorCollection },
 					commandType: CommandType.StoredProcedure,
@@ -32,7 +32,7 @@ namespace Books.DAL.Repositories
 
 		public async Task<int> DeleteByBookId(Guid bookId)
 		{
-			var result =  await Connection.ExecuteAsync(
+			var result = await Connection.ExecuteAsync(
 				"[dbo].[Author_DeleteByBookId]",
 				new { bookId },
 				commandType: CommandType.StoredProcedure,

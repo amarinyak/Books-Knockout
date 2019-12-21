@@ -29,7 +29,7 @@ namespace Books.DAL.Models
 		public DateTime CreateDate { get; set; }
 
 		public DateTime EditDate { get; set; }
-		
+
 		public virtual ICollection<AuthorDb> Authors { get; set; }
 	}
 }
