@@ -3,12 +3,12 @@
 var booksApp = booksApp || {};
 
 $(function () {
-    var appConfigData = $("#AppConfigData").val();
+	var appConfigData = $("#AppConfigData").val();
 
-    booksApp.config.errors.initAjaxErrors();
+	booksApp.config.errors.initAjaxErrors();
 	booksApp.config.validation.initRules();
-	
-	booksApp.appConfigInitializer.init(JSON.parse(appConfigData)).done(function() {
+
+	booksApp.appConfigInitializer.init(JSON.parse(appConfigData)).done(function () {
 		var booksTable = $(".js-books-table");
 		var editModal = $(".js-books-edit-modal");
 

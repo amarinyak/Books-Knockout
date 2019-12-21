@@ -2,7 +2,7 @@
 
 extend(booksApp, {
 	config: {
-		validation: (function() {
+		validation: (function () {
 			function getDigitArray(value) {
 				var val = value.replace(/[^0-9]/g, "");
 
@@ -36,9 +36,9 @@ extend(booksApp, {
 			}
 
 			return {
-				initRules: function() {
+				initRules: function () {
 					ko.validation.rules["checkIsbn"] = {
-						validator: function(val, enabled) {
+						validator: function (val, enabled) {
 							if (!enabled) return true;
 							return checkIsbn(val);
 						},

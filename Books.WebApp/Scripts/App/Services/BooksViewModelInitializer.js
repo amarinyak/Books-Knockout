@@ -2,9 +2,9 @@
 
 extend(booksApp, {
 	services: {
-		booksViewModelInitializer: (function() {
+		booksViewModelInitializer: (function () {
 			return {
-				init: function(booksTable, editModal, sortField, descSort) {
+				init: function (booksTable, editModal, sortField, descSort) {
 					var model = new BooksViewModel(booksTable, editModal, sortField, descSort);
 					model.initHeaders();
 					model.getBooks();

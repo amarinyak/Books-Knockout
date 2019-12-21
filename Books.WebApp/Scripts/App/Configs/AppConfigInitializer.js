@@ -1,12 +1,12 @@
 ﻿"use strict";
 
 extend(booksApp, {
-	appConfigInitializer: (function() {
+	appConfigInitializer: (function () {
 		function initToken() {
 			var def = $.Deferred();
 
 			if (sessionStorage["token"] == null) {
-				booksApp.services.authProvider.getToken().done(function(token) {
+				booksApp.services.authProvider.getToken().done(function (token) {
 					booksApp.appConfig.token = token;
 					sessionStorage["token"] = token;
 					def.resolve();
@@ -21,11 +21,11 @@ extend(booksApp, {
 
 		return {
 			init: function (appConfigData) {
-                var def = $.Deferred();
+				var def = $.Deferred();
 
 				$.extend(booksApp.appConfig, appConfigData);
 
-				initToken().done(function() {
+				initToken().done(function () {
 					def.resolve();
 				});
 
