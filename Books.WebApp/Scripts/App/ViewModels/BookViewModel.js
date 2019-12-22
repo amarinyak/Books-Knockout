@@ -91,11 +91,13 @@ var BookViewModel = function (book) {
 
 		if (!/^image\/jpeg$/.test(file.type)) {
 			alert(booksApp.resources.validation.imageFormatError);
+			self.coverImageUploaderValue(null);
 			return;
 		}
 
 		if ((file.size / 1024) > 200) {
 			alert(booksApp.resources.validation.imageSizeError);
+			self.coverImageUploaderValue(null);
 			return;
 		}
 
