@@ -1,6 +1,7 @@
 ## Books-Knockout
 
 This is a test project demonstrating my development skills in .NET Framework, Web API and JavaScript.
+<br />
 It was created in the process of solving a test task.
 
 ## Links:
