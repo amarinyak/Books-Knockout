@@ -1,11 +1,12 @@
 ## Books-Knockout
 
-This is a test project to demonstrate my development skills, created in the process of solving a test task in Kaspersky lab.
+This is a test project demonstrating my development skills in .NET Framework, Web API and JavaScript.
+It was created in the process of solving a test task.
 
 ## Links:
 You can see how it works:
 - [Web (Powered by AWS)](http://ec2-3-10-15-70.eu-west-2.compute.amazonaws.com)
-- [API (Swagger)](http://ec2-3-10-15-70.eu-west-2.compute.amazonaws.com/swagger)
+- [API (Swagger)](http://ec2-3-11-4-179.eu-west-2.compute.amazonaws.com/swagger)
 
 ## Task Description
 Write a small single-page web application - book editor.
