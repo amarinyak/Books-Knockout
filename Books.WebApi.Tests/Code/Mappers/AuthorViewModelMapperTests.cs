@@ -9,122 +9,122 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Books.WebApi.Tests.Code.Mappers
 {
-	[TestClass]
-	public class AuthorViewModelMapperTests
-	{
-		private Fixture _fixture;
-		private AuthorViewModelMapper _target;
+    [TestClass]
+    public class AuthorViewModelMapperTests
+    {
+        private Fixture _fixture;
+        private AuthorViewModelMapper _target;
 
-		[TestInitialize]
-		public void TestInitialize()
-		{
-			_fixture = new Fixture();
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _fixture = new Fixture();
 
-			_target = new AuthorViewModelMapper();
-		}
+            _target = new AuthorViewModelMapper();
+        }
 
-		[TestMethod]
-		public void ToDomainModel()
-		{
-			// Arrange
-			var authorVm = _fixture.Create<AuthorViewModel>();
+        [TestMethod]
+        public void ToDomainModel()
+        {
+            // Arrange
+            var authorVm = _fixture.Create<AuthorViewModel>();
 
-			var expected = new Author
-			{
-				Id = authorVm.Id,
-				FirstName = authorVm.FirstName,
-				LastName = authorVm.LastName,
-				BookId = authorVm.BookId
-			};
+            var expected = new Author
+            {
+                Id = authorVm.Id,
+                FirstName = authorVm.FirstName,
+                LastName = authorVm.LastName,
+                BookId = authorVm.BookId
+            };
 
-			// Act
-			var result = _target.ToDomainModel(authorVm);
+            // Act
+            var result = _target.ToDomainModel(authorVm);
 
-			// Assert
-			result.Should().BeEquivalentTo(expected);
-		}
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
 
-		[TestMethod]
-		public void ToDomainModel_Collection()
-		{
-			// Arrange
-			var authorsVm = _fixture.CreateMany<AuthorViewModel>().ToList();
+        [TestMethod]
+        public void ToDomainModel_Collection()
+        {
+            // Arrange
+            var authorsVm = _fixture.CreateMany<AuthorViewModel>().ToList();
 
-			var expected = authorsVm.Select(authorVm => new Author
-			{
-				Id = authorVm.Id,
-				FirstName = authorVm.FirstName,
-				LastName = authorVm.LastName,
-				BookId = authorVm.BookId
-			});
+            var expected = authorsVm.Select(authorVm => new Author
+            {
+                Id = authorVm.Id,
+                FirstName = authorVm.FirstName,
+                LastName = authorVm.LastName,
+                BookId = authorVm.BookId
+            });
 
-			// Act
-			var result = _target.ToDomainModel(authorsVm);
+            // Act
+            var result = _target.ToDomainModel(authorsVm);
 
-			// Assert
-			result.Should().BeEquivalentTo(expected);
-		}
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
 
-		[TestMethod]
-		public void ToDomainModel_NullCollection()
-		{
-			// Act
-			var result = _target.ToDomainModel((IEnumerable<AuthorViewModel>)null);
+        [TestMethod]
+        public void ToDomainModel_NullCollection()
+        {
+            // Act
+            var result = _target.ToDomainModel((IEnumerable<AuthorViewModel>)null);
 
-			// Assert
-			result.Should().BeEquivalentTo(null);
-		}
+            // Assert
+            result.Should().BeEquivalentTo(null);
+        }
 
-		[TestMethod]
-		public void ToViewModel()
-		{
-			// Arrange
-			var author = _fixture.Create<Author>();
+        [TestMethod]
+        public void ToViewModel()
+        {
+            // Arrange
+            var author = _fixture.Create<Author>();
 
-			var expected = new AuthorViewModel
-			{
-				Id = author.Id,
-				FirstName = author.FirstName,
-				LastName = author.LastName,
-				BookId = author.BookId
-			};
+            var expected = new AuthorViewModel
+            {
+                Id = author.Id,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+                BookId = author.BookId
+            };
 
-			// Act
-			var result = _target.ToViewModel(author);
+            // Act
+            var result = _target.ToViewModel(author);
 
-			// Assert
-			result.Should().BeEquivalentTo(expected);
-		}
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
 
-		[TestMethod]
-		public void ToViewModel_Collection()
-		{
-			// Arrange
-			var authors = _fixture.CreateMany<Author>().ToList();
+        [TestMethod]
+        public void ToViewModel_Collection()
+        {
+            // Arrange
+            var authors = _fixture.CreateMany<Author>().ToList();
 
-			var expected = authors.Select(author => new AuthorViewModel
-			{
-				Id = author.Id,
-				FirstName = author.FirstName,
-				LastName = author.LastName,
-				BookId = author.BookId
-			});
+            var expected = authors.Select(author => new AuthorViewModel
+            {
+                Id = author.Id,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+                BookId = author.BookId
+            });
 
-			// Act
-			var result = _target.ToViewModel(authors);
+            // Act
+            var result = _target.ToViewModel(authors);
 
-			// Assert
-			result.Should().BeEquivalentTo(expected);
-		}
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
 
-		[TestMethod]
-		public void ToViewModel_NullCollection()
-		{
-			// Act
-			var result = _target.ToViewModel((IEnumerable<Author>)null);
+        [TestMethod]
+        public void ToViewModel_NullCollection()
+        {
+            // Act
+            var result = _target.ToViewModel((IEnumerable<Author>)null);
 
-			// Assert
-			result.Should().BeEquivalentTo(null);
-		}
-	}
+            // Assert
+            result.Should().BeEquivalentTo(null);
+        }
+    }
 }

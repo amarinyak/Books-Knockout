@@ -5,14 +5,14 @@ using Books.DAL.Models;
 
 namespace Books.BL.Interfaces.Mappers
 {
-	public interface IAuthorMapper
-	{
-		AuthorDb ToDataModel(Author author, Guid bookId);
+    public interface IAuthorMapper
+    {
+        AuthorDb ToDataModel(Author author, Guid bookId);
 
-		IEnumerable<AuthorDb> ToDataModel(IEnumerable<Author> authors, Guid bookId);
+        IEnumerable<AuthorDb> ToDataModel(IEnumerable<Author> authors, Guid bookId);
 
-		Author ToDomainModel(AuthorDb author);
+        Author ToDomainModel(AuthorDb author);
 
-		IEnumerable<Author> ToDomainModel(IEnumerable<AuthorDb> authors);
-	}
+        IEnumerable<Author> ToDomainModel(IEnumerable<AuthorDb> authors);
+    }
 }

@@ -1,57 +1,57 @@
 ﻿<div data-bind="with: book">
-	<div class="form-group">
-		<label data-bind="text: booksApp.resources.appUI.cover" for="coverImageUploader"></label>
-		<p>
-			<!-- ko if: !hasImage() -->
-			<i class="fa fa-picture-o"></i>
-			<span data-bind="text: booksApp.resources.appUI.noImage"></span>
-			<!-- /ko -->
-			<!-- ko if: hasImage() -->
-			<img width="100" data-bind="attr: {src: image}" alt="No image" />
-			<button class="btn btn-danger" data-bind="click: deleteImage, attr: { title: booksApp.resources.appUI.deleteImage }" style="vertical-align: bottom;"><i class="fa fa-times"></i></button>
-			<!-- /ko -->
-		</p>
-		<input id="coverImageUploader" type="file" data-bind="value: coverImageUploaderValue, event: {change: uploadImage}" />
-	</div>
-	<div class="form-group">
-		<label data-bind="text: booksApp.resources.appUI.title"></label>
-		<input type="text" class="form-control" data-bind="value: title">
-	</div>
-	<div>
-		<label data-bind="text: booksApp.resources.appUI.author"></label>
-		<div data-bind="foreach: {data:authors}">
-			<div class="form-group">
-				<div class="form-row">
-					<div class="col">
-						<input type="text" class="form-control" placeholder="First name" data-bind="value: firstName">
-					</div>
-					<div class="col">
-						<input type="text" class="form-control" placeholder="Last name" data-bind="value: lastName">
-					</div>
-					<div class="col">
-						<button class="btn btn-danger" data-bind="click: $parent.deleteAuthor, visible: $parent.authors().length > 1, attr: { title: booksApp.resources.appUI.delete }"><i class="fa fa-times"></i></button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<button class="btn btn-success" data-bind="text: booksApp.resources.appUI.addAuthor, click: addAuthor"></button>
-		</div>
-	</div>
-	<div class="form-group">
-		<label data-bind="text: booksApp.resources.appUI.pageCount"></label>
-		<input type="text" class="form-control" data-bind="value: pageCount">
-	</div>
-	<div class="form-group">
-		<label data-bind="text: booksApp.resources.appUI.year"></label>
-		<input type="text" class="form-control" data-bind="value: year">
-	</div>
-	<div class="form-group">
-		<label data-bind="text: booksApp.resources.appUI.publisher"></label>
-		<input type="text" class="form-control" data-bind="value: publisher">
-	</div>
-	<div class="form-group">
-		<label data-bind="text: booksApp.resources.appUI.isbn"></label>
-		<input type="text" class="form-control" data-bind="value: isbn">
-	</div>
+    <div class="form-group">
+        <label data-bind="text: booksApp.resources.appUI.cover" for="coverImageUploader"></label>
+        <p>
+            <!-- ko if: !hasImage() -->
+            <i class="fa fa-picture-o"></i>
+            <span data-bind="text: booksApp.resources.appUI.noImage"></span>
+            <!-- /ko -->
+            <!-- ko if: hasImage() -->
+            <img width="100" data-bind="attr: {src: image}" alt="No image" />
+            <button class="btn btn-danger" data-bind="click: deleteImage, attr: { title: booksApp.resources.appUI.deleteImage }" style="vertical-align: bottom;"><i class="fa fa-times"></i></button>
+            <!-- /ko -->
+        </p>
+        <input id="coverImageUploader" type="file" data-bind="value: coverImageUploaderValue, event: {change: uploadImage}" />
+    </div>
+    <div class="form-group">
+        <label data-bind="text: booksApp.resources.appUI.title"></label>
+        <input type="text" class="form-control" data-bind="value: title">
+    </div>
+    <div>
+        <label data-bind="text: booksApp.resources.appUI.author"></label>
+        <div data-bind="foreach: {data:authors}">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="First name" data-bind="value: firstName">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Last name" data-bind="value: lastName">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-danger" data-bind="click: $parent.deleteAuthor, visible: $parent.authors().length > 1, attr: { title: booksApp.resources.appUI.delete }"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" data-bind="text: booksApp.resources.appUI.addAuthor, click: addAuthor"></button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label data-bind="text: booksApp.resources.appUI.pageCount"></label>
+        <input type="text" class="form-control" data-bind="value: pageCount">
+    </div>
+    <div class="form-group">
+        <label data-bind="text: booksApp.resources.appUI.year"></label>
+        <input type="text" class="form-control" data-bind="value: year">
+    </div>
+    <div class="form-group">
+        <label data-bind="text: booksApp.resources.appUI.publisher"></label>
+        <input type="text" class="form-control" data-bind="value: publisher">
+    </div>
+    <div class="form-group">
+        <label data-bind="text: booksApp.resources.appUI.isbn"></label>
+        <input type="text" class="form-control" data-bind="value: isbn">
+    </div>
 </div>

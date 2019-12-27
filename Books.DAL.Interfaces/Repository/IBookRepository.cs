@@ -5,16 +5,16 @@ using Books.DAL.Models;
 
 namespace Books.DAL.Interfaces.Repository
 {
-	public interface IBookRepository
-	{
-		Task<int> Add(BookDb entity);
+    public interface IBookRepository
+    {
+        Task<int> Add(BookDb entity);
 
-		Task<int> Delete(Guid bookId, Guid token);
+        Task<int> Delete(Guid bookId, Guid token);
 
-		Task<IEnumerable<BookDb>> GetByToken(Guid token);
+        Task<IEnumerable<BookDb>> GetByToken(Guid token);
 
-		Task<BookDb> GetById(Guid bookId, Guid token);
+        Task<BookDb> GetById(Guid bookId, Guid token);
 
-		Task<int> Update(BookDb entity);
-	}
+        Task<int> Update(BookDb entity);
+    }
 }

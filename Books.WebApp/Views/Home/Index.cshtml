@@ -1,18 +1,18 @@
 ﻿@using Books.WebApp.App_LocalResources
 @model Books.WebApp.ViewModels.HomeViewModel
 @{
-	ViewBag.Title = AppUI.HomePageTitle;
+    ViewBag.Title = AppUI.HomePageTitle;
 }
 @Html.HiddenFor(p => p.AppConfigData)
 <div class="container">
-	<div class="row">
-		<div class="col">
-			<h2>@AppUI.PageHeader</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			@Html.Partial("~/Views/Books/_BooksTable.cshtml")
-		</div>
-	</div>
+    <div class="row">
+        <div class="col">
+            <h2>@AppUI.PageHeader</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @Html.Partial("~/Views/Books/_BooksTable.cshtml")
+        </div>
+    </div>
 </div>

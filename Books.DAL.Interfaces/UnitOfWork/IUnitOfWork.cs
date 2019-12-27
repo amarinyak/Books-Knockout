@@ -3,12 +3,12 @@ using Books.DAL.Interfaces.Repository;
 
 namespace Books.DAL.Interfaces.UnitOfWork
 {
-	public interface IUnitOfWork : IDisposable
-	{
-		IAuthorRepository AuthorRepository { get; }
+    public interface IUnitOfWork : IDisposable
+    {
+        IAuthorRepository AuthorRepository { get; }
 
-		IBookRepository BookRepository { get; }
+        IBookRepository BookRepository { get; }
 
-		void Commit();
-	}
+        void Commit();
+    }
 }

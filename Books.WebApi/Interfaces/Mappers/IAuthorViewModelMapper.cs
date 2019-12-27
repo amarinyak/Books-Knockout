@@ -4,14 +4,14 @@ using Books.WebApi.ViewModels;
 
 namespace Books.WebApi.Interfaces.Mappers
 {
-	public interface IAuthorViewModelMapper
-	{
-		Author ToDomainModel(AuthorViewModel author);
+    public interface IAuthorViewModelMapper
+    {
+        Author ToDomainModel(AuthorViewModel author);
 
-		IEnumerable<Author> ToDomainModel(IEnumerable<AuthorViewModel> authors);
+        IEnumerable<Author> ToDomainModel(IEnumerable<AuthorViewModel> authors);
 
-		AuthorViewModel ToViewModel(Author author);
+        AuthorViewModel ToViewModel(Author author);
 
-		IEnumerable<AuthorViewModel> ToViewModel(IEnumerable<Author> authors);
-	}
+        IEnumerable<AuthorViewModel> ToViewModel(IEnumerable<Author> authors);
+    }
 }

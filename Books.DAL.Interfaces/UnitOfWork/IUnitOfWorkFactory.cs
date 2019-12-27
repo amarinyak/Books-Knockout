@@ -1,7 +1,7 @@
 ﻿namespace Books.DAL.Interfaces.UnitOfWork
 {
-	public interface IUnitOfWorkFactory
-	{
-		IUnitOfWork Create(bool useTransaction = false);
-	}
+    public interface IUnitOfWorkFactory
+    {
+        IUnitOfWork Create(bool useTransaction = false);
+    }
 }

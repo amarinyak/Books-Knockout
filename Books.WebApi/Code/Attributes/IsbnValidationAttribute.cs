@@ -5,17 +5,17 @@ using Books.WebApi.DiConfiguration;
 
 namespace Books.WebApi.Code.Attributes
 {
-	public class IsbnValidationAttribute : ValidationAttribute
-	{
-		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-		{
-			var isbnValidator = DiConfig.Container.ResolveNamed<IValidator>("ISBN");
+    public class IsbnValidationAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var isbnValidator = DiConfig.Container.ResolveNamed<IValidator>("ISBN");
 
-			var strValue = value as string;
+            var strValue = value as string;
 
-			return isbnValidator.IsValid(strValue, out var errorMessage)
-				? ValidationResult.Success
-				: new ValidationResult(errorMessage);
-		}
-	}
+            return isbnValidator.IsValid(strValue, out var errorMessage)
+                ? ValidationResult.Success
+                : new ValidationResult(errorMessage);
+        }
+    }
 }

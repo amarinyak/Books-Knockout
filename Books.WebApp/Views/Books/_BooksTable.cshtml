@@ -1,60 +1,60 @@
 ﻿<div class="js-books-table" data-bind="visible: true" style="display: none;">
-	<div data-bind="visible: !isLoading()">
-		<div class="overflow-auto mb-3">
-			<table class="table table-bordered mb-0">
-				<!-- ko if: books().length > 0 -->
-				<thead>
-					<tr data-bind="foreach: {data:headers}">
-						<th class="text-nowrap">
-							<span data-bind="text: title, css: {'pointer text-primary': canSort}, click: $parent.sort"></span>
-							<span data-bind="visible: $parent.sortField() == sortField">
-								<span data-bind="visible: !$parent.descSort()">&#9650;</span>
-								<span data-bind="visible: $parent.descSort()">&#9660;</span>
-							</span>
-						</th>
-					</tr>
-				</thead>
-				<tbody data-bind="foreach: {data:books}">
-					<tr>
-						<td data-bind="if: hasImage">
-							<img width="100" data-bind="attr:{src: image}" alt="" />
-						</td>
-						<td data-bind="text: title"></td>
-						<td data-bind="foreach: {data:authors}">
-							<div>
-								<span data-bind="text: firstName"></span>
-								<span data-bind="text: lastName"></span>
-							</div>
-						</td>
-						<td data-bind="text: pageCount"></td>
-						<td data-bind="text: year"></td>
-						<td data-bind="text: publisher"></td>
-						<td data-bind="text: isbn"></td>
-						<td class="text-nowrap">
-							<button class="btn btn-secondary" data-bind="text: booksApp.resources.appUI.edit, click: $parent.edit"></button>
-							<button class="btn btn-danger" data-bind="text: booksApp.resources.appUI.delete, click: $parent.delete"></button>
-						</td>
-					</tr>
-				</tbody>
-				<!-- /ko -->
-				<!-- ko if: books().length == 0 -->
-				<tbody>
-					<tr>
-						<td data-bind="text: booksApp.resources.appUI.noBooks"></td>
-					</tr>
-				</tbody>
-				<!-- /ko -->
-			</table>
-		</div>
-		<div class="text-right">
-			<button class="btn btn-success" data-bind="text: booksApp.resources.appUI.addBook, click: create"></button>
-		</div>
-	</div>
-	<div data-bind="visible: isLoading()">
-		<div class="d-flex align-items-center">
-			<div class="spinner-border text-primary d-inline-block"></div>
-			<div class="d-inline-block ml-2" data-bind="text: booksApp.resources.appUI.loading"></div>
-		</div>
-	</div>
-	@Html.Partial("~/Views/Books/_BooksEditModal.cshtml")
+    <div data-bind="visible: !isLoading()">
+        <div class="overflow-auto mb-3">
+            <table class="table table-bordered mb-0">
+                <!-- ko if: books().length > 0 -->
+                <thead>
+                    <tr data-bind="foreach: {data:headers}">
+                        <th class="text-nowrap">
+                            <span data-bind="text: title, css: {'pointer text-primary': canSort}, click: $parent.sort"></span>
+                            <span data-bind="visible: $parent.sortField() == sortField">
+                                <span data-bind="visible: !$parent.descSort()">&#9650;</span>
+                                <span data-bind="visible: $parent.descSort()">&#9660;</span>
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: {data:books}">
+                    <tr>
+                        <td data-bind="if: hasImage">
+                            <img width="100" data-bind="attr:{src: image}" alt="" />
+                        </td>
+                        <td data-bind="text: title"></td>
+                        <td data-bind="foreach: {data:authors}">
+                            <div>
+                                <span data-bind="text: firstName"></span>
+                                <span data-bind="text: lastName"></span>
+                            </div>
+                        </td>
+                        <td data-bind="text: pageCount"></td>
+                        <td data-bind="text: year"></td>
+                        <td data-bind="text: publisher"></td>
+                        <td data-bind="text: isbn"></td>
+                        <td class="text-nowrap">
+                            <button class="btn btn-secondary" data-bind="text: booksApp.resources.appUI.edit, click: $parent.edit"></button>
+                            <button class="btn btn-danger" data-bind="text: booksApp.resources.appUI.delete, click: $parent.delete"></button>
+                        </td>
+                    </tr>
+                </tbody>
+                <!-- /ko -->
+                <!-- ko if: books().length == 0 -->
+                <tbody>
+                    <tr>
+                        <td data-bind="text: booksApp.resources.appUI.noBooks"></td>
+                    </tr>
+                </tbody>
+                <!-- /ko -->
+            </table>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-success" data-bind="text: booksApp.resources.appUI.addBook, click: create"></button>
+        </div>
+    </div>
+    <div data-bind="visible: isLoading()">
+        <div class="d-flex align-items-center">
+            <div class="spinner-border text-primary d-inline-block"></div>
+            <div class="d-inline-block ml-2" data-bind="text: booksApp.resources.appUI.loading"></div>
+        </div>
+    </div>
+    @Html.Partial("~/Views/Books/_BooksEditModal.cshtml")
 </div>

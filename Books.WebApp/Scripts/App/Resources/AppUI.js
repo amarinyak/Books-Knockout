@@ -1,30 +1,30 @@
 ﻿"use strict";
 
 extend(booksApp, {
-	resources: {
-		appUI: {
-			addBook: "Add a book",
-			editBook: "Edit the book",
-			addAuthor: "Add an author",
-			noBooks: "There are no books",
+    resources: {
+        appUI: {
+            addBook: "Add a book",
+            editBook: "Edit the book",
+            addAuthor: "Add an author",
+            noBooks: "There are no books",
 
-			cover: "Cover",
-			title: "Title",
-			author: "Author",
-			pageCount: "Page count",
-			year: "Year",
-			publisher: "Publisher",
-			isbn: "ISBN",
+            cover: "Cover",
+            title: "Title",
+            author: "Author",
+            pageCount: "Page count",
+            year: "Year",
+            publisher: "Publisher",
+            isbn: "ISBN",
 
-			save: "Save",
-			cancel: "Cancel",
-			edit: "Edit",
-			delete: "Delete",
+            save: "Save",
+            cancel: "Cancel",
+            edit: "Edit",
+            delete: "Delete",
 
-			deleteImage: "Delete image",
-			noImage: "No image",
+            deleteImage: "Delete image",
+            noImage: "No image",
 
-			loading: "Loading..."
-		}
-	}
+            loading: "Loading..."
+        }
+    }
 });

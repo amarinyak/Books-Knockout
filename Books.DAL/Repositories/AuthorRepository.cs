@@ -9,36 +9,36 @@ using Dapper;
 
 namespace Books.DAL.Repositories
 {
-	public class AuthorRepository : BaseRepository, IAuthorRepository
-	{
-		public AuthorRepository(IDbConnection connection, IDbTransaction transaction)
-			: base(connection, transaction)
-		{
-		}
+    public class AuthorRepository : BaseRepository, IAuthorRepository
+    {
+        public AuthorRepository(IDbConnection connection, IDbTransaction transaction)
+            : base(connection, transaction)
+        {
+        }
 
-		public async Task<int> Merge(IEnumerable<AuthorDb> authorDbs)
-		{
-			using (var authorCollection = AuthorCollectionDataTable.Init(authorDbs))
-			{
-				var result = await Connection.ExecuteAsync(
-					"[dbo].[Author_Merge]",
-					new { authorCollection },
-					commandType: CommandType.StoredProcedure,
-					transaction: Transaction);
+        public async Task<int> Merge(IEnumerable<AuthorDb> authorDbs)
+        {
+            using (var authorCollection = AuthorCollectionDataTable.Init(authorDbs))
+            {
+                var result = await Connection.ExecuteAsync(
+                    "[dbo].[Author_Merge]",
+                    new { authorCollection },
+                    commandType: CommandType.StoredProcedure,
+                    transaction: Transaction);
 
-				return result;
-			}
-		}
+                return result;
+            }
+        }
 
-		public async Task<int> DeleteByBookId(Guid bookId)
-		{
-			var result = await Connection.ExecuteAsync(
-				"[dbo].[Author_DeleteByBookId]",
-				new { bookId },
-				commandType: CommandType.StoredProcedure,
-				transaction: Transaction);
+        public async Task<int> DeleteByBookId(Guid bookId)
+        {
+            var result = await Connection.ExecuteAsync(
+                "[dbo].[Author_DeleteByBookId]",
+                new { bookId },
+                commandType: CommandType.StoredProcedure,
+                transaction: Transaction);
 
-			return result;
-		}
-	}
+            return result;
+        }
+    }
 }

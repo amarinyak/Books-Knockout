@@ -2,8 +2,8 @@
 
 namespace Books.WebApp.Interfaces.Builders
 {
-	public interface IAppConfigViewModelBuilder
-	{
-		AppConfigViewModel Build();
-	}
+    public interface IAppConfigViewModelBuilder
+    {
+        AppConfigViewModel Build();
+    }
 }

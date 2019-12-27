@@ -5,10 +5,10 @@ using Books.DAL.Models;
 
 namespace Books.DAL.Interfaces.Repository
 {
-	public interface IAuthorRepository
-	{
-		Task<int> Merge(IEnumerable<AuthorDb> authorDbs);
+    public interface IAuthorRepository
+    {
+        Task<int> Merge(IEnumerable<AuthorDb> authorDbs);
 
-		Task<int> DeleteByBookId(Guid bookId);
-	}
+        Task<int> DeleteByBookId(Guid bookId);
+    }
 }

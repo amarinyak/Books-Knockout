@@ -6,17 +6,17 @@ using Books.WebApi.Configuration;
 
 namespace Books.WebApi
 {
-	public static class WebApiConfig
-	{
-		public static void Register(HttpConfiguration config)
-		{
-			var cors = new EnableCorsAttribute(ApiConfig.WebAppUrl, "*", "*");
-			config.EnableCors(cors);
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute(ApiConfig.WebAppUrl, "*", "*");
+            config.EnableCors(cors);
 
-			config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes();
 
-			config.Filters.Add(new TokenFilterAttribute());
-			config.Filters.Add(new HandleErrorsFilterAttribute());
-		}
-	}
+            config.Filters.Add(new TokenFilterAttribute());
+            config.Filters.Add(new HandleErrorsFilterAttribute());
+        }
+    }
 }
