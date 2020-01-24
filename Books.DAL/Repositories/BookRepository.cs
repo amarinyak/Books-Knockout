@@ -16,20 +16,20 @@ namespace Books.DAL.Repositories
         {
         }
 
-        public async Task<int> Add(BookDb entity)
+        public async Task<int> Add(BookDb bookDb)
         {
             var result = await Connection.ExecuteAsync(
                 "[dbo].[Book_Add]",
                 new
                 {
-                    entity.Id,
-                    entity.Title,
-                    entity.PageCount,
-                    entity.Publisher,
-                    entity.Year,
-                    entity.Isbn,
-                    entity.Image,
-                    entity.Token
+                    bookDb.Id,
+                    bookDb.Title,
+                    bookDb.PageCount,
+                    bookDb.Publisher,
+                    bookDb.Year,
+                    bookDb.Isbn,
+                    bookDb.Image,
+                    bookDb.Token
                 },
                 commandType: CommandType.StoredProcedure,
                 transaction: Transaction);
@@ -77,20 +77,20 @@ namespace Books.DAL.Repositories
             return result.SingleOrDefault();
         }
 
-        public async Task<int> Update(BookDb entity)
+        public async Task<int> Update(BookDb bookDb)
         {
             var result = await Connection.ExecuteAsync(
                 "[dbo].[Book_Update]",
                 new
                 {
-                    entity.Id,
-                    entity.Title,
-                    entity.PageCount,
-                    entity.Publisher,
-                    entity.Year,
-                    entity.Isbn,
-                    entity.Image,
-                    entity.Token
+                    bookDb.Id,
+                    bookDb.Title,
+                    bookDb.PageCount,
+                    bookDb.Publisher,
+                    bookDb.Year,
+                    bookDb.Isbn,
+                    bookDb.Image,
+                    bookDb.Token
                 },
                 commandType: CommandType.StoredProcedure,
                 transaction: Transaction);

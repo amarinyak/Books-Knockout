@@ -7,7 +7,7 @@ namespace Books.DAL.Interfaces.Repository
 {
     public interface IAuthorRepository
     {
-        Task<int> Merge(IEnumerable<AuthorDb> authorDbs);
+        Task<int> Merge(IEnumerable<AuthorDb> authorsDb);
 
         Task<int> DeleteByBookId(Guid bookId);
     }

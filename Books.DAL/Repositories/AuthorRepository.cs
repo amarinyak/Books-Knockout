@@ -16,13 +16,13 @@ namespace Books.DAL.Repositories
         {
         }
 
-        public async Task<int> Merge(IEnumerable<AuthorDb> authorDbs)
+        public async Task<int> Merge(IEnumerable<AuthorDb> authorsDb)
         {
-            using (var authorCollection = AuthorCollectionDataTable.Init(authorDbs))
+            using (var authorsCollection = AuthorCollectionDataTable.Init(authorsDb))
             {
                 var result = await Connection.ExecuteAsync(
                     "[dbo].[Author_Merge]",
-                    new { authorCollection },
+                    new { authorsCollection },
                     commandType: CommandType.StoredProcedure,
                     transaction: Transaction);
 

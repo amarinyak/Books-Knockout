@@ -1,15 +1,15 @@
 ﻿CREATE PROCEDURE [dbo].[Author_Merge]
-    @AuthorCollection [dbo].[AuthorCollection] READONLY
+    @AuthorsCollection [dbo].[AuthorCollection] READONLY
 AS
 BEGIN
 
     WITH FilteredAuthors AS (
         SELECT *
         FROM [dbo].[Author] a
-        WHERE a.[BookId] IN (SELECT DISTINCT BookId FROM @AuthorCollection)
+        WHERE a.[BookId] IN (SELECT DISTINCT BookId FROM @AuthorsCollection)
     )
 
-    MERGE FilteredAuthors t USING @AuthorCollection s
+    MERGE FilteredAuthors t USING @AuthorsCollection s
     ON (s.[Id] = t.[Id])
     WHEN MATCHED THEN
         UPDATE SET

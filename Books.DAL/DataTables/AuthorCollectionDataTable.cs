@@ -7,7 +7,7 @@ namespace Books.DAL.DataTables
 {
     public static class AuthorCollectionDataTable
     {
-        public static DataTable Init(IEnumerable<AuthorDb> values)
+        public static DataTable Init(IEnumerable<AuthorDb> authorsDb)
         {
             var dataTable = new DataTable("[dbo].[AuthorCollection]");
 
@@ -16,9 +16,9 @@ namespace Books.DAL.DataTables
             dataTable.Columns.Add("[FirstName]", typeof(string));
             dataTable.Columns.Add("[LastName]", typeof(string));
 
-            foreach (var value in values)
+            foreach (var authorDb in authorsDb)
             {
-                dataTable.Rows.Add(value.Id, value.BookId, value.FirstName, value.LastName);
+                dataTable.Rows.Add(authorDb.Id, authorDb.BookId, authorDb.FirstName, authorDb.LastName);
             }
 
             return dataTable;
