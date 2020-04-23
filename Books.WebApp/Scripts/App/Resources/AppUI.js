@@ -22,9 +22,7 @@ extend(booksApp, {
             delete: "Delete",
 
             deleteImage: "Delete image",
-            noImage: "No image",
-
-            loading: "Loading..."
+            noImage: "No image"
         }
     }
 });

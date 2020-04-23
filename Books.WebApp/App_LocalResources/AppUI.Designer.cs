@@ -70,6 +70,15 @@ namespace Books.WebApp.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        public static string LoadingText {
+            get {
+                return ResourceManager.GetString("LoadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of books.
         /// </summary>
         public static string PageHeader {
